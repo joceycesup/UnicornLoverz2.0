@@ -39,3 +39,4 @@ sysinfo.txt
 /Assets/StreamingAssets/Audio/GeneratedSoundBanks/*/*
 WwiseSettings.xml
 */AkWwiseProjectData.*
+Assets/Wwise/Editor/ProjectData/AkWwiseProjectData.asset

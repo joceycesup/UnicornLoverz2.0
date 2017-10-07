@@ -4,31 +4,47 @@ using UnityEngine;
 
 public abstract class ULCharacter : MonoBehaviour
 {
-    public float speed = 4.0f;
     public bool toTheRight = true;
 	protected SpriteRenderer sr;
 	protected Animator animator;
 
-	protected void Init () {
+	protected virtual void Init () {
 		sr = GetComponent<SpriteRenderer> ();
 		animator = GetComponent<Animator> ();
 	}
 
-	void FixedUpdate () {
-		Vector3 axis = GetAxis ();
-		if (axis.x != 0.0f) {
-			if (toTheRight != (toTheRight = axis.x > 0.0f)) {
+	void Start () {
+		Init ();
+	}
+
+	protected virtual void CharUpdate () {
+
+	}
+
+	private void Update () {
+		CharUpdate ();
+	}
+
+	protected virtual void CharFixedUpdate () {
+		Vector3 direction = GetAxis ();
+		if (direction.x != 0.0f) {
+			if (toTheRight != (toTheRight = direction.x > 0.0f)) {
 				sr.flipX = !toTheRight;
 			}
 		}
-		Vector3 direction = new Vector3 (axis.x, axis.y).normalized;
 		if (direction.x != 0.0f && direction.y != 0.0f) {
 			animator.Play ("Walk");
 		}
 		else {
 			animator.Play ("Idle");
 		}
-		transform.Translate (direction * speed * Time.fixedDeltaTime);
+	}
+
+	void FixedUpdate () {
+		CharFixedUpdate ();
+	}
+
+	public virtual void Hugged (ULPlayerController player) {
 	}
 
 	protected abstract Vector3 GetAxis ();

@@ -5,23 +5,28 @@ using UnityEngine;
 
 public class ULPlayerController : ULCharacter {
 	public float hugDistance = 1.0f;
+	private SpriteRenderer halo;
 
-	void Start () {
+	protected override void Init () {
 		base.Init ();
+		halo = transform.GetChild (0).GetComponent<SpriteRenderer> ();
 	}
 
-	private void Update () {
+	protected override void CharUpdate () {
+		base.CharUpdate ();
 		if (Input.GetButtonDown ("Hug")) {
-			RaycastHit2D hit = Physics2D.Raycast (transform.position, toTheRight ? Vector2.right : Vector2.left, hugDistance, 8); // Huggable
-			Debug.DrawRay (transform.position, (toTheRight ? Vector2.right : Vector2.left) * hugDistance, Color.red, 0.5f);
+			RaycastHit2D hit = Physics2D.Raycast (transform.position, toTheRight ? Vector2.right : Vector2.left, hugDistance, 1 << 8); // Huggable
+			Debug.DrawRay (transform.position, (toTheRight ? Vector2.right : Vector2.left) * hugDistance, Color.magenta, 0.5f);
 			if (hit.collider != null) {
-				Debug.Log ("Hugged " + hit.transform);
-				hit.collider.GetComponent<ULFollowerController> ().Hugged (this);
+				hit.collider.GetComponent<ULCharacter> ().Hugged (this);
 			}
 			else {
 				Debug.Log ("Didn't hug");
 			}
 		}
+		transform.Translate (GetAxis () * ULGlobals.playerSpeed * Time.fixedDeltaTime);
+
+		halo.color = new Color (1.0f, 1.0f, 1.0f, Mathf.Clamp01 (ULFollowerController.gaiCount / ULGlobals.maxFollowers));
 	}
 
 	public void Push (Vector3 force) {
@@ -29,6 +34,6 @@ public class ULPlayerController : ULCharacter {
 	}
 
 	protected override Vector3 GetAxis () {
-		return new Vector3 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical"));
+		return new Vector3 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical")).normalized;
 	}
 }

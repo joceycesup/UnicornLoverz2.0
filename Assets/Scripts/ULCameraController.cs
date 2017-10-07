@@ -3,19 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ULCameraController : MonoBehaviour {
-	public float minSize = 1.0f, maxSize = 5.0f;
-	public float maxCrowd = 100;
-	private ULPlayerController target;
-	[Range (0.0f, 130.0f)]
-	public float crowd = 1.0f;
+	public float minSize = 1.0f;
 
 	// Use this for initialization
 	void Start () {
-		target = FindObjectOfType<ULPlayerController> ();
 	}
 
 	void Update () {
-		transform.position = new Vector3 (target.transform.position.x, 0.0f, transform.position.z);
-		Camera.main.orthographicSize = Mathf.Lerp (minSize, maxSize, crowd/ maxCrowd );
+		Camera.main.orthographicSize = Mathf.Lerp (minSize, ULGlobals.mapHalfHeight, ULFollowerController.gaiCount / ULGlobals.maxFollowers);
+		float y = Mathf.Clamp (ULGlobals.player.transform.position.y, -ULGlobals.mapHalfHeight + Camera.main.orthographicSize, ULGlobals.mapHalfHeight - Camera.main.orthographicSize);
+		transform.position = new Vector3 (ULGlobals.player.transform.position.x, y, transform.position.z);
 	}
 }
