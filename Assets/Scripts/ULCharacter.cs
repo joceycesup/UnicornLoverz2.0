@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ULCharacter : MonoBehaviour {
-	public bool toTheRight = true;
+public abstract class ULCharacter : MonoBehaviour
+{
+    public float speed = 4.0f;
+    public bool toTheRight = true;
 	protected SpriteRenderer sr;
 	protected Animator animator;
 

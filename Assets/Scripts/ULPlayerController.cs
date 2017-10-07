@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ULCharacterController : ULCharacter {
-	public float speed = 4.0f;
 	public float hugDistance = 1.0f;
 
 	void Start () {
