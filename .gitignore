@@ -32,3 +32,10 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+#WWise
+/Assets/StreamingAssets/Audio/GeneratedSoundBanks/*
+*/GeneratedSoundBanks/*
+/Assets/StreamingAssets/Audio/GeneratedSoundBanks/*/*
+WwiseSettings.xml
+*/AkWwiseProjectData.*
