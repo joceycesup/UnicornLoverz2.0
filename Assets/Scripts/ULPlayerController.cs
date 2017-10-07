@@ -16,6 +16,7 @@ public class ULPlayerController : ULCharacter {
 			Debug.DrawRay (transform.position, (toTheRight ? Vector2.right : Vector2.left) * hugDistance, Color.red, 0.5f);
 			if (hit.collider != null) {
 				Debug.Log ("Hugged " + hit.transform);
+				hit.collider.GetComponent<ULFollowerController> ().Hugged (this);
 			}
 			else {
 				Debug.Log ("Didn't hug");

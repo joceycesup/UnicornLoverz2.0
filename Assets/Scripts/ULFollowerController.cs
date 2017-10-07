@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ULFollower : ULCharacter {
+public class ULFollowerController : ULCharacter {
 	public enum FollowerState {
 		CRS,
 		Normal,
@@ -35,7 +35,7 @@ public class ULFollower : ULCharacter {
 		}
 	}
 
-	public void Hugged (ULCharacterController player) {
+	public void Hugged (ULPlayerController player) {
 		if (state == FollowerState.Normal) {
 			state = FollowerState.Gai;
 			ChangeSprite ();
