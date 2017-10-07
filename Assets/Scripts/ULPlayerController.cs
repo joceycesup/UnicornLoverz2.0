@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ULCharacterController : ULCharacter {
+public class ULPlayerController : ULCharacter {
 	public float hugDistance = 1.0f;
 
 	void Start () {
