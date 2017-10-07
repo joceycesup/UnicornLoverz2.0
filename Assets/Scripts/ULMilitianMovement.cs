@@ -27,6 +27,10 @@ public class ULMilitianMovement : MonoBehaviour
                 direction = Vector3.ClampMagnitude(direction, distance);
             transform.Translate(direction);
         }
+        else
+        {
+            // LE JOLI CODE DE THIBAULT
+        }
 
     }
 }
