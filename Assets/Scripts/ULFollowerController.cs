@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ULFollower : MonoBehaviour {
+public class ULFollower : ULCharacter {
 	public enum FollowerState {
 		CRS,
 		Normal,
@@ -16,15 +17,22 @@ public class ULFollower : MonoBehaviour {
 	public FollowerState state = FollowerState.Normal;
 
 	void Start () {
-
-	}
-
-	void Update () {
-
+		base.Init ();
 	}
 
 	private void ChangeSprite () {
-
+		switch (state) {
+			case FollowerState.CRS:
+				break;
+			case FollowerState.Normal:
+				break;
+			case FollowerState.Gai:
+				break;
+			case FollowerState.Handcuffed:
+				break;
+			case FollowerState.Down:
+				break;
+		}
 	}
 
 	public void Hugged (ULCharacterController player) {
@@ -39,5 +47,9 @@ public class ULFollower : MonoBehaviour {
 		else if (state == FollowerState.CRS) {
 			player.Push (Vector3.Normalize (player.transform.position - transform.position) * pushForce);
 		}
+	}
+
+	protected override Vector3 GetAxis () {
+		return Vector3.zero;
 	}
 }
