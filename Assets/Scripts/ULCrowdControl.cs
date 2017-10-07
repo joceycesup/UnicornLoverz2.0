@@ -5,7 +5,7 @@ using UnityEngine;
 public class ULCrowdControl : MonoBehaviour
 {
 
-    private ULCharacterController Player;
+    private ULPlayerController Player;
     private Vector3 lastPosition;
     public float speed = 1.0f;
     private Queue<Vector3> previousPositions = new Queue<Vector3>();
@@ -15,7 +15,7 @@ public class ULCrowdControl : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
-        Player = FindObjectOfType<ULCharacterController>();
+        Player = FindObjectOfType<ULPlayerController>();
         lastPosition = Player.transform.position;
         previousPositions.Enqueue(lastPosition);
         StartCoroutine("CheckPlayerPosition");
