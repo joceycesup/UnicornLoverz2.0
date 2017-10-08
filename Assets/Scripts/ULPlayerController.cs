@@ -41,13 +41,13 @@ public class ULPlayerController : ULCharacter {
 				ULFollowerController target = coll.GetComponent<ULFollowerController> ();
 				if (target.state == ULFollowerController.FollowerState.Boss) {
 					animator.Play ("HitBoss");
+					Camera.main.gameObject.GetComponent<ULScreenShake> ().enabled = true;
 					ULGameStateHandler.Failed ();
+					isHugging = true;
+					Destroy (coll.gameObject);
+					Destroy (this);
 				}
 			}
-			else {
-				animator.Play ("EmptyHug");
-			}
-			StartCoroutine (HugFollower (coll == null));
 		}
 		transform.Translate (GetAxis () * ULGlobals.playerSpeed * Time.fixedDeltaTime);
 

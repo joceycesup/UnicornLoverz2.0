@@ -46,7 +46,8 @@ public class ULFollowerController : ULCharacter {
 	public override bool Hugged (ULPlayerController player) {
 		if (state == FollowerState.Gai)
 			return false;
-		sr.flipX = player.sr.flipX;
+		if (sr != null)
+			sr.flipX = player.sr.flipX;
 		if (state == FollowerState.Normal) {
 			state = FollowerState.Gai;
 			followedGroup = ULGlobals.followersGroup;
@@ -70,9 +71,9 @@ public class ULFollowerController : ULCharacter {
 		}
 		else if (state == FollowerState.Boss) {
 			player.animator.Play ("HugBoss");
-			state = FollowerState.Gai;
 			ULGameStateHandler.Victory ();
-			ChangeSprite ();
+			Destroy (player);
+			Destroy (this);
 		}
 		return true;
 	}

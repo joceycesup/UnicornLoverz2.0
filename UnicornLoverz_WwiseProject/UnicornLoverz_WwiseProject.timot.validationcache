@@ -48,4 +48,32 @@
 	<ValidationCacheItem File="D:\UnicornLoverz_WwiseIntegrationTemp\UnicornLoverz_WwiseProject\Switches\Default Work Unit.wwu" DateLow="3752222249" DateHigh="30621416"/>
 	<ValidationCacheItem File="D:\UnicornLoverz_WwiseIntegrationTemp\UnicornLoverz_WwiseProject\Triggers\Default Work Unit.wwu" DateLow="3753412261" DateHigh="30621416"/>
 	<ValidationCacheItem File="D:\UnicornLoverz_WwiseIntegrationTemp\UnicornLoverz_WwiseProject\UnicornLoverz_WwiseProject.wproj" DateLow="3751861689" DateHigh="30621416"/>
+<<<<<<< HEAD
+	<ValidationCacheItem File="E:\ENJAM 2017\UnicornLoverz2.0\UnicornLoverz_WwiseProject\Actor-Mixer Hierarchy\Default Work Unit.wwu" DateLow="2365637276" DateHigh="30621735"/>
+	<ValidationCacheItem File="E:\ENJAM 2017\UnicornLoverz2.0\UnicornLoverz_WwiseProject\Attenuations\Default Work Unit.wwu" DateLow="3063444216" DateHigh="30621728"/>
+	<ValidationCacheItem File="E:\ENJAM 2017\UnicornLoverz2.0\UnicornLoverz_WwiseProject\Audio Devices\Default Work Unit.wwu" DateLow="3063474239" DateHigh="30621728"/>
+	<ValidationCacheItem File="E:\ENJAM 2017\UnicornLoverz2.0\UnicornLoverz_WwiseProject\Control Surface Sessions\Default Work Unit.wwu" DateLow="4113249608" DateHigh="30621729"/>
+	<ValidationCacheItem File="E:\ENJAM 2017\UnicornLoverz2.0\UnicornLoverz_WwiseProject\Conversion Settings\Default Work Unit.wwu" DateLow="3857556092" DateHigh="30621732"/>
+	<ValidationCacheItem File="E:\ENJAM 2017\UnicornLoverz2.0\UnicornLoverz_WwiseProject\Conversion Settings\Factory Conversion Settings.wwu" DateLow="3063557703" DateHigh="30621728"/>
+	<ValidationCacheItem File="E:\ENJAM 2017\UnicornLoverz2.0\UnicornLoverz_WwiseProject\Dynamic Dialogue\Default Work Unit.wwu" DateLow="3063587817" DateHigh="30621728"/>
+	<ValidationCacheItem File="E:\ENJAM 2017\UnicornLoverz2.0\UnicornLoverz_WwiseProject\Effects\Default Work Unit.wwu" DateLow="3063617733" DateHigh="30621728"/>
+	<ValidationCacheItem File="E:\ENJAM 2017\UnicornLoverz2.0\UnicornLoverz_WwiseProject\Effects\Factory Effects.wwu" DateLow="3063677776" DateHigh="30621728"/>
+	<ValidationCacheItem File="E:\ENJAM 2017\UnicornLoverz2.0\UnicornLoverz_WwiseProject\Events\Default Work Unit.wwu" DateLow="263380190" DateHigh="30621733"/>
+	<ValidationCacheItem File="E:\ENJAM 2017\UnicornLoverz2.0\UnicornLoverz_WwiseProject\Game Parameters\Default Work Unit.wwu" DateLow="3063737949" DateHigh="30621728"/>
+	<ValidationCacheItem File="E:\ENJAM 2017\UnicornLoverz2.0\UnicornLoverz_WwiseProject\Interactive Music Hierarchy\Default Work Unit.wwu" DateLow="3063787979" DateHigh="30621728"/>
+	<ValidationCacheItem File="E:\ENJAM 2017\UnicornLoverz2.0\UnicornLoverz_WwiseProject\Master-Mixer Hierarchy\Default Work Unit.wwu" DateLow="2365531499" DateHigh="30621735"/>
+	<ValidationCacheItem File="E:\ENJAM 2017\UnicornLoverz2.0\UnicornLoverz_WwiseProject\Mixing Sessions\Default Work Unit.wwu" DateLow="3063838020" DateHigh="30621728"/>
+	<ValidationCacheItem File="E:\ENJAM 2017\UnicornLoverz2.0\UnicornLoverz_WwiseProject\Modulators\Default Work Unit.wwu" DateLow="3063868039" DateHigh="30621728"/>
+	<ValidationCacheItem File="E:\ENJAM 2017\UnicornLoverz2.0\UnicornLoverz_WwiseProject\Presets\Default Work Unit.wwu" DateLow="3063897935" DateHigh="30621728"/>
+	<ValidationCacheItem File="E:\ENJAM 2017\UnicornLoverz2.0\UnicornLoverz_WwiseProject\Queries\Default Work Unit.wwu" DateLow="3063928057" DateHigh="30621728"/>
+	<ValidationCacheItem File="E:\ENJAM 2017\UnicornLoverz2.0\UnicornLoverz_WwiseProject\Queries\Factory Queries.wwu" DateLow="3063978094" DateHigh="30621728"/>
+	<ValidationCacheItem File="E:\ENJAM 2017\UnicornLoverz2.0\UnicornLoverz_WwiseProject\SoundBanks\Default Work Unit.wwu" DateLow="3438404063" DateHigh="30621734"/>
+	<ValidationCacheItem File="E:\ENJAM 2017\UnicornLoverz2.0\UnicornLoverz_WwiseProject\Soundcaster Sessions\Default Work Unit.wwu" DateLow="3064038042" DateHigh="30621728"/>
+	<ValidationCacheItem File="E:\ENJAM 2017\UnicornLoverz2.0\UnicornLoverz_WwiseProject\States\Default Work Unit.wwu" DateLow="3064078116" DateHigh="30621728"/>
+	<ValidationCacheItem File="E:\ENJAM 2017\UnicornLoverz2.0\UnicornLoverz_WwiseProject\Switches\Default Work Unit.wwu" DateLow="3064098175" DateHigh="30621728"/>
+	<ValidationCacheItem File="E:\ENJAM 2017\UnicornLoverz2.0\UnicornLoverz_WwiseProject\Triggers\Default Work Unit.wwu" DateLow="3064128219" DateHigh="30621728"/>
+	<ValidationCacheItem File="E:\ENJAM 2017\UnicornLoverz2.0\UnicornLoverz_WwiseProject\UnicornLoverz_WwiseProject.timot.wsettings" DateLow="3552044760" DateHigh="30621738"/>
+	<ValidationCacheItem File="E:\ENJAM 2017\UnicornLoverz2.0\UnicornLoverz_WwiseProject\UnicornLoverz_WwiseProject.wproj" DateLow="3064258182" DateHigh="30621728"/>
+=======
+>>>>>>> origin/master
 </ValidationCache>
