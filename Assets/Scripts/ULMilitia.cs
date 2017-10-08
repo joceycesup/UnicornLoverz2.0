@@ -14,11 +14,20 @@ public class ULMilitia : ULCharacter {
 		enabled = false;
 	}
 
+	private void OnEnable () {
+		StartCoroutine ("CRSSound");
+	}
+
+	private void OnDisable () {
+		StopCoroutine ("CRSSound");
+	}
+
 	protected override Vector3 GetAxis () {
 		return direction;
 	}
 
 	public override void RunAway () {
+		StopCoroutine ("CRSSound");
 		if (militiaTarget != null) {
 			militiaTarget.tag = "Untagged";
 			militiaTarget = null;
@@ -98,5 +107,10 @@ public class ULMilitia : ULCharacter {
 		yield return new WaitForSeconds (ULGlobals.handcuffCountDown);
 		militiaTarget = null;
 		idle = false;
+	}
+
+	private IEnumerator CRSSound () {
+		yield return new WaitForSeconds (UnityEngine.Random.Range (ULGlobals.randomCRSSound.x, ULGlobals.randomCRSSound.y));
+		AkSoundEngine.PostEvent ("CriCRS", gameObject);
 	}
 }

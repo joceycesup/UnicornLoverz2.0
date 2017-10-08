@@ -49,6 +49,7 @@ public class ULFollowerController : ULCharacter {
 		if (sr != null)
 			sr.flipX = player.sr.flipX;
 		if (state == FollowerState.Normal) {
+			AkSoundEngine.PostEvent ("Hug", ULGlobalSoundManager.instance);
 			state = FollowerState.Gai;
 			followedGroup = ULGlobals.followersGroup;
 			Debug.Log ("Hugged " + transform);
@@ -59,7 +60,7 @@ public class ULFollowerController : ULCharacter {
 			BeingHugged = true;
 			StartCoroutine ("Invisible");
 			animator.Play ("Hugged");
-
+			StartCoroutine ("ConvertSound");
 		}
 		else if (state == FollowerState.Handcuffed) {
 			StopCoroutine ("HandcuffCountDown");
@@ -67,9 +68,11 @@ public class ULFollowerController : ULCharacter {
 			state = FollowerState.Gai;
 			gameObject.tag = "Untagged";
 			transform.parent = followedGroup;
+			StartCoroutine ("ConvertSound");
 			//ChangeSprite ();
 		}
 		else if (state == FollowerState.Boss) {
+			AkSoundEngine.PostEvent ("TrumpGetHug", ULGlobalSoundManager.instance);
 			player.animator.Play ("HugBoss");
 			ULGameStateHandler.Victory ();
 			Destroy (player);
@@ -89,6 +92,8 @@ public class ULFollowerController : ULCharacter {
 
 	public void Handcuff (ULCharacter militia) {
 		if (state == FollowerState.Gai) {
+			StopCoroutine ("ConvertSound");
+			AkSoundEngine.PostEvent ("GetDunk", ULGlobalSoundManager.instance);
 			gameObject.layer = 10; // Handcuffed
 			transform.parent = null;
 			state = FollowerState.Handcuffed;
@@ -158,5 +163,12 @@ public class ULFollowerController : ULCharacter {
 
 		//transform.localPosition = new Vector3 (transform.localPosition.x + localX, transform.localPosition.y + localY, transform.localPosition.z) * Time.fixedDeltaTime;
 		transform.localPosition += GetAxis () * Time.fixedDeltaTime;
+	}
+
+	private IEnumerator ConvertSound() {
+		if (state == FollowerState.Gai) {
+			yield return new WaitForSeconds (Random.Range (ULGlobals.randomConvertSound.x, ULGlobals.randomConvertSound.y));
+			AkSoundEngine.PostEvent ("Convert", gameObject);
+		}
 	}
 }

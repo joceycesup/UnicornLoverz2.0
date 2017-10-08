@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ULFence : MonoBehaviour {
+	public int zoneNumber = 1;
 	public int minCrowd = 20;
 	public delegate void OpenEvent ();
 	public OpenEvent OnOpen;
@@ -25,6 +26,7 @@ public class ULFence : MonoBehaviour {
 
 	private IEnumerator Open () {
 		if (!isOpen) {
+			AkSoundEngine.SetState ("States_Zone", "Zone" + (zoneNumber.ToString ("00")));
 			transform.GetChild (2).gameObject.SetActive (true);
 			Destroy (transform.GetChild (0).gameObject);
 			Destroy (transform.GetChild (1).gameObject);

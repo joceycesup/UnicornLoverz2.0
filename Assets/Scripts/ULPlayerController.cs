@@ -40,6 +40,7 @@ public class ULPlayerController : ULCharacter {
 			if (coll != null) {
 				ULFollowerController target = coll.GetComponent<ULFollowerController> ();
 				if (target.state == ULFollowerController.FollowerState.Boss) {
+					AkSoundEngine.PostEvent ("TrumpGetPunch", ULGlobalSoundManager.instance);
 					animator.Play ("HitBoss");
 					Camera.main.gameObject.GetComponent<ULScreenShake> ().enabled = true;
 					ULGameStateHandler.Failed ();

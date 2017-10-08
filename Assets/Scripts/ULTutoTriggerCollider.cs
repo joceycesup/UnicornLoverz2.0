@@ -2,26 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ULTutoTriggerCollider : MonoBehaviour
-{
+public class ULTutoTriggerCollider : MonoBehaviour {
+	public bool hug;
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.name == "Character")
-        {
-            ULCanvasController.ActiveButtonHug();
-        }
-    }
+	private void OnTriggerEnter2D (Collider2D collision) {
+		if (collision.name == "Character") {
+			if (hug)
+				ULCanvasController.ActiveButtonHug ();
+			else {
+				ULCanvasController.ActiveButtonHit ();
+				AkSoundEngine.PostEvent ("TrumpLol", ULGlobalSoundManager.instance);
+			}
+			Destroy (this);
+		}
+	}
 }

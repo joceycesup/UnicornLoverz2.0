@@ -47,7 +47,12 @@ public class ULGlobals : MonoBehaviour {
     public float _emptyHugDuration = 5.0f;
     public static float emptyHugDuration { get { return instance._emptyHugDuration; } }
 
-    private void Awake () {
+	public Vector2 _randomConvertSound = new Vector2 (5.0f, 20.0f);
+	public static Vector2 randomConvertSound { get { return instance._randomConvertSound; } }
+	public Vector2 _randomCRSSound = new Vector2 (5.0f, 10.0f);
+	public static Vector2 randomCRSSound { get { return instance._randomCRSSound; } }
+
+	private void Awake () {
 		if (instance == null) {
 			instance = this;
 			player = FindObjectOfType<ULPlayerController> ();
