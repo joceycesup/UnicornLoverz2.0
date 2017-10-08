@@ -40,7 +40,13 @@ public class ULPlayerController : ULCharacter {
 		halo.color = new Color (1.0f, 1.0f, 1.0f, Mathf.Clamp01 (ULFollowerController.gaiCount / ULGlobals.maxFollowers));
 	}
 
-    private IEnumerator HugFollower(bool empty)
+	protected override void CharFixedUpdate () {
+		if (isHugging)
+			return;
+		base.CharFixedUpdate ();
+	}
+
+	private IEnumerator HugFollower(bool empty)
     {
         yield return new WaitForSeconds(empty ? ULGlobals.emptyHugDuration : ULGlobals.hugDuration);
         isHugging = false;
