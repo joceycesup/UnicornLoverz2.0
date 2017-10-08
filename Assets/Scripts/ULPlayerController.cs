@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ULPlayerController : ULCharacter {
-	public float hugDistance = 1.0f;
+	public Vector2 hugHalfBox = new Vector2 (8.0f, 14.0f);
+	public float hugDistance = 8.0f;
 	private SpriteRenderer halo;
 
 	protected override void Init () {
@@ -15,13 +16,17 @@ public class ULPlayerController : ULCharacter {
 	protected override void CharUpdate () {
 		base.CharUpdate ();
 		if (Input.GetButtonDown ("Hug")) {
-			RaycastHit2D hit = Physics2D.Raycast (transform.position, toTheRight ? Vector2.right : Vector2.left, hugDistance, 1 << 8); // Huggable
-			Debug.DrawRay (transform.position, (toTheRight ? Vector2.right : Vector2.left) * hugDistance, Color.magenta, 0.5f);
-			if (hit.collider != null) {
-				hit.collider.GetComponent<ULCharacter> ().Hugged (this);
+			Collider2D coll = Physics2D.OverlapBox (transform.position + (toTheRight ? Vector3.right : Vector3.left) * hugDistance, hugHalfBox, 0.0f, 1280); // Huggable && Handcuffed ((1 << 8) | (1 << 10))
+																																							 /*			
+																																							 Debug.DrawRay (transform.position + (toTheRight ? Vector3.right : Vector3.left) * hugDistance + Vector3.up * hugHalfBox.y + Vector3.left * hugHalfBox.x, Vector3.down * hugHalfBox.y * 2.0f, Color.magenta, 0.5f);
+																																							 Debug.DrawRay (transform.position + (toTheRight ? Vector3.right : Vector3.left) * hugDistance + Vector3.up * hugHalfBox.y + Vector3.left * hugHalfBox.x, Vector3.right * hugHalfBox.x * 2.0f, Color.magenta, 0.5f);
+																																							 Debug.DrawRay (transform.position + (toTheRight ? Vector3.right : Vector3.left) * hugDistance + Vector3.down * hugHalfBox.y + Vector3.right * hugHalfBox.x, Vector3.up * hugHalfBox.y * 2.0f, Color.magenta, 0.5f);
+																																							 Debug.DrawRay (transform.position + (toTheRight ? Vector3.right : Vector3.left) * hugDistance + Vector3.down * hugHalfBox.y + Vector3.right * hugHalfBox.x, Vector3.left * hugHalfBox.x * 2.0f, Color.magenta, 0.5f);//*/
+			if (coll != null) {
+				coll.GetComponent<ULCharacter> ().Hugged (this);
 			}
 			else {
-				Debug.Log ("Didn't hug");
+				animator.Play ("Hug");
 			}
 		}
 		transform.Translate (GetAxis () * ULGlobals.playerSpeed * Time.fixedDeltaTime);

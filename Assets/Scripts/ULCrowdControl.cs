@@ -9,7 +9,6 @@ public class ULCrowdControl : MonoBehaviour {
 	private Vector3 tmpPosition;
 	private int cptPos = 0;
 
-
 	// Use this for initialization
 	void Start () {
 		lastPosition = ULGlobals.player.transform.position;

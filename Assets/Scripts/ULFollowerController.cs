@@ -25,11 +25,13 @@ public class ULFollowerController : ULCharacter {
 
 	private void ChangeSprite () {
 		switch (state) {
-			case FollowerState.Normal:
+			case FollowerState.Normal: // A virer ?
 				break;
 			case FollowerState.Gai:
+                this.animator.runtimeAnimatorController = ULGlobals.animatorListHappy[Random.Range(0, 2)];
 				break;
 			case FollowerState.Handcuffed:
+                this.animator.Play("Handcuffed");
 				break;
 			case FollowerState.Down:
 				break;
@@ -50,6 +52,7 @@ public class ULFollowerController : ULCharacter {
 		}
 		else if (state == FollowerState.Handcuffed) {
 			StopCoroutine ("HandcuffCountDown");
+			gameObject.layer = 8; // Huggable
 			state = FollowerState.Gai;
 			transform.parent = followedGroup;
 			ChangeSprite ();
@@ -58,6 +61,7 @@ public class ULFollowerController : ULCharacter {
 
 	public void Handcuff (ULCharacter militia) {
 		if (state != FollowerState.Handcuffed) {
+			gameObject.layer = 10; // Handcuffed
 			transform.parent = null;
 			state = FollowerState.Handcuffed;
 			StartCoroutine ("HandcuffCountDown");
