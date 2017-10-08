@@ -8,13 +8,16 @@ public class ULMilitiaHandler : MonoBehaviour {
 
 	void Start () {
 		startFence.OnOpen += ReleaseMilitia;
-		stopFence.OnOpen += StopMilitia;
+		if (stopFence != null)
+			stopFence.OnOpen += StopMilitia;
 	}
 
 	void ReleaseMilitia () {
 		foreach (ULMilitia militia in transform.GetComponentsInChildren<ULMilitia> ()) {
 			militia.enabled = true;
 		}
+		if (stopFence == null)
+			StopMilitia ();
 	}
 
 	void StopMilitia () {

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ULRunAway : MonoBehaviour {
 
-
 	void Start () {
 		gameObject.layer = 9; // run away
 	}

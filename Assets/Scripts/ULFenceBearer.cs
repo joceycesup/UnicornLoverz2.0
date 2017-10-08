@@ -24,8 +24,8 @@ public class ULFenceBearer : MonoBehaviour {
 	}
 
 	private void OnGUI () {
-		Vector3 pos = Camera.main.WorldToScreenPoint (new Vector3 (transform.position.x - textOffset.x, transform.position.y + textOffset.y));
-		float zoom = ULGlobals.mapHalfHeight / Camera.main.orthographicSize;/*
+		Vector3 pos = Camera.main.WorldToScreenPoint (new Vector3 (transform.position.x - textOffset.x, transform.position.y + textOffset.y));/*
+		float zoom = ULGlobals.mapHalfHeight / Camera.main.orthographicSize;
 		float ratio = ((float) Camera.main.pixelHeight) / ULGlobals.mapHalfHeight;/*/
 		float ratio = ((float) Camera.main.pixelHeight) / Camera.main.orthographicSize;//*/
 		guiStyle.fontSize = (int) (8.0f * ratio * fontSize);

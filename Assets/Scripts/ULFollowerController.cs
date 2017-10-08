@@ -7,7 +7,8 @@ public class ULFollowerController : ULCharacter {
 		Normal,
 		Gai,
 		Handcuffed,
-		Down
+		Down,
+		Boss
 	}
 
 	public static int gaiCount {
@@ -37,10 +38,14 @@ public class ULFollowerController : ULCharacter {
 				break;
 			case FollowerState.Down:
 				break;
+			case FollowerState.Boss:
+				break;
 		}
 	}
 
-	public override void Hugged (ULPlayerController player) {
+	public override bool Hugged (ULPlayerController player) {
+		if (state == FollowerState.Gai)
+			return false;
 		if (state == FollowerState.Normal) {
 			state = FollowerState.Gai;
 			followedGroup = ULGlobals.followersGroup;
@@ -52,7 +57,7 @@ public class ULFollowerController : ULCharacter {
             BeingHugged = true;
             StartCoroutine("Invisible");
             animator.Play("Hugged");
-            
+
 		}
 		else if (state == FollowerState.Handcuffed) {
 			StopCoroutine ("HandcuffCountDown");
@@ -61,6 +66,13 @@ public class ULFollowerController : ULCharacter {
 			transform.parent = followedGroup;
 			ChangeSprite ();
 		}
+		else if (state == FollowerState.Boss) {
+			player.animator.Play ("HugBoss");
+			state = FollowerState.Gai;
+			ULGameStateHandler.Victory ();
+			ChangeSprite ();
+		}
+		return true;
 	}
 
     private IEnumerator Invisible()
@@ -74,7 +86,7 @@ public class ULFollowerController : ULCharacter {
 
 
     public void Handcuff (ULCharacter militia) {
-		if (state != FollowerState.Handcuffed) {
+		if (state == FollowerState.Gai) {
 			gameObject.layer = 10; // Handcuffed
 			transform.parent = null;
 			state = FollowerState.Handcuffed;

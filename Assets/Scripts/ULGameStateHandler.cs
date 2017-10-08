@@ -14,7 +14,15 @@ public class ULGameStateHandler : MonoBehaviour {
 			Destroy (this);
 	}
 
-	public static void Reload() {
+	public static void Reload () {
+
+	}
+
+	public static void Victory () {
+
+	}
+
+	public static void Failed () {
 
 	}
 }

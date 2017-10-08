@@ -5,7 +5,11 @@ using UnityEngine;
 public abstract class ULCharacter : MonoBehaviour {
 	public bool toTheRight = true;
 	protected SpriteRenderer sr;
-	protected Animator animator;
+	protected Animator _animator;
+	public Animator animator {
+		get { return _animator; }
+		protected set { _animator = value; }
+	}
 
 	protected virtual void Init () {
 		if (GetComponent<ULSpritesSorter> () == null)
@@ -44,12 +48,14 @@ public abstract class ULCharacter : MonoBehaviour {
 		CharFixedUpdate ();
 	}
 
-	public virtual void Hugged (ULPlayerController player) {
+	public virtual bool Hugged (ULPlayerController player) {
+		return false;
 	}
 
 	public virtual void RunAway () {
 		animator.Play ("Walk");
 		sr.flipX = true;
+		gameObject.AddComponent<ULRunAway> ();
 		Destroy (this);
 	}
 
