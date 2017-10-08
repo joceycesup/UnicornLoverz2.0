@@ -19,7 +19,7 @@ public class ULTutoTriggerCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.name == "Player")
+        if (collision.name == "Character")
         {
             ULCanvasController.ActiveButtonHug();
         }

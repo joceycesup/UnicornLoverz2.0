@@ -32,7 +32,7 @@ public abstract class ULCharacter : MonoBehaviour
 				sr.flipX = !toTheRight;
 			}
 		}
-		if (direction.x != 0.0f && direction.y != 0.0f) {
+		if (direction.x != 0.0f || direction.y != 0.0f) {
 			animator.Play ("Walk");
 		}
 		else {
