@@ -39,10 +39,15 @@ public class ULGlobals : MonoBehaviour {
 	public static float playerSpeed { get { return instance._playerSpeed; } }
 	public float _militiaSpeed = 25.0f;
 	public static float militiaSpeed { get { return instance._militiaSpeed; } }
-	public float _followerSpeed = 25.0f;
-	public static float followerSpeed { get { return instance._followerSpeed; } }
+    public float _followerSpeed = 25.0f;
+    public static float followerSpeed { get { return instance._followerSpeed; } }
 
-	private void Awake () {
+    public float _hugDuration = 5.0f;
+    public static float hugDuration { get { return instance._hugDuration; } }
+    public float _emptyHugDuration = 5.0f;
+    public static float emptyHugDuration { get { return instance._emptyHugDuration; } }
+
+    private void Awake () {
 		if (instance == null) {
 			instance = this;
 			player = FindObjectOfType<ULPlayerController> ();
