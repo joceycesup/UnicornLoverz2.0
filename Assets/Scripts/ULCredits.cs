@@ -8,6 +8,6 @@ public class ULCredits : MonoBehaviour {
 	// Use this for initialization
 	public void credits()
     {
-        SceneManager.LoadScene("Credits");
+        SceneManager.LoadScene("CREDITS");
     }
 }
