@@ -18,6 +18,7 @@ public class ULCrowdControl : MonoBehaviour {
 
 	// Update is called once per frame
 	void FixedUpdate () {
+
 		if (previousPositions.Count > 1 && cptPos % 2 == 0) {
 			tmpPosition = previousPositions.Dequeue ();
 		}
@@ -32,13 +33,17 @@ public class ULCrowdControl : MonoBehaviour {
 	IEnumerator CheckPlayerPosition () {
 		yield return new WaitForSeconds (pathfindingGranularity);
 
-		Vector3 temp = (lastPosition - ULGlobals.player.transform.position);
+		if (ULGlobals.player == null) {
+			Destroy (this);
+		} else {
+			Vector3 temp = (lastPosition - ULGlobals.player.transform.position);
 
-		if (temp.magnitude > 1) {
-			cptPos++;
-			lastPosition = ULGlobals.player.transform.position;
-			previousPositions.Enqueue (lastPosition);
+			if (temp.magnitude > 1) {
+				cptPos++;
+				lastPosition = ULGlobals.player.transform.position;
+				previousPositions.Enqueue (lastPosition);
+			}
+			StartCoroutine ("CheckPlayerPosition");
 		}
-		StartCoroutine ("CheckPlayerPosition");
 	}
 }
