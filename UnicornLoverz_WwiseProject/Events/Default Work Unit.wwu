@@ -1,6 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{7F9C2B68-244F-492F-9CB3-DDF37AEBB80E}" SchemaVersion="75">
 	<Events>
-		<WorkUnit Name="Default Work Unit" ID="{7F9C2B68-244F-492F-9CB3-DDF37AEBB80E}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{7F9C2B68-244F-492F-9CB3-DDF37AEBB80E}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="Convert" ID="{3375655B-B46B-4F29-AAC8-2992E2F69D4F}">
+					<ChildrenList>
+						<Action Name="Play" ID="{B79DA572-DFA6-4F5D-BAA4-93C873AB46E8}" ShortID="582434405" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{12F8D52D-86DE-4671-99FA-82313261CB8B}" Global="false">
+									<ObjectRef Name="RandomConvertis" ID="{DAEBCDE9-9414-4D20-9AC0-D5093831A80F}" WorkUnitID="{A240254B-F1C4-42B7-A7E9-B2B21B34BA9C}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Hug" ID="{D746326D-9AE9-49BB-A000-3861B8D777E4}">
+					<ChildrenList>
+						<Action Name="Play" ID="{E12ED561-729A-4EC2-9E84-7D383D32F3B8}" ShortID="617887059" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{911DD505-46FF-40BC-924F-78C7B5589E0A}" Global="false">
+									<ObjectRef Name="RadomHug" ID="{B7EFE00B-0362-4864-9595-E024F47D9A84}" WorkUnitID="{A240254B-F1C4-42B7-A7E9-B2B21B34BA9C}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="CriCRS" ID="{9E060885-12A6-4D3B-81E0-F312CD79C339}">
+					<ChildrenList>
+						<Action Name="Play" ID="{1BB66ECA-F102-470D-AAF1-0C11D582276E}" ShortID="31338959" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{4B1529C5-8F95-4B30-A860-B47CFFFBDC19}" Global="false">
+									<ObjectRef Name="RadomCRS" ID="{6917A053-D3BB-4DD5-84B7-2CD1495BDEF3}" WorkUnitID="{A240254B-F1C4-42B7-A7E9-B2B21B34BA9C}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="GetDunk" ID="{1C29414C-106A-4013-BE74-5C2C76115B6D}">
+					<ChildrenList>
+						<Action Name="Play" ID="{AFE8BEB2-9DB5-4609-B37A-F4191FF4748F}" ShortID="1028637870" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{3911C70F-9C3E-4F4C-A2AC-5DD83EBAD631}" Global="false">
+									<ObjectRef Name="RadomArrested" ID="{748A0305-888B-4286-A4CD-A84A0D4D864E}" WorkUnitID="{A240254B-F1C4-42B7-A7E9-B2B21B34BA9C}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="TrumpLol" ID="{C9E8EDE4-A95A-424E-9AC8-2446063110BA}">
+					<ChildrenList>
+						<Action Name="Play" ID="{89FC1208-B0B6-427D-B93F-301C571F8F33}" ShortID="1045886411" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{AAA6BDD5-4588-461C-B996-1B47C92128F2}" Global="false">
+									<ObjectRef Name="RireTrump" ID="{CE9CB701-69F2-422E-8453-EB2C87473CF9}" WorkUnitID="{A240254B-F1C4-42B7-A7E9-B2B21B34BA9C}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="TrumpGetPunch" ID="{C132FA11-CD88-41C7-B335-D7BBE453FBDE}">
+					<ChildrenList>
+						<Action Name="Play" ID="{7309699E-5993-4CA4-867F-552EC5E1F8BF}" ShortID="357613923" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{62978AB3-1C69-420C-A7E6-727915716040}" Global="false">
+									<ObjectRef Name="PlayerHitTrump" ID="{E13B39C6-C578-4A4E-9441-1CB77D87D953}" WorkUnitID="{A240254B-F1C4-42B7-A7E9-B2B21B34BA9C}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="TrumpGetHug" ID="{168B0A35-9F51-4650-A678-1AC0AE2F06DC}">
+					<ChildrenList>
+						<Action Name="Play" ID="{2EC0AADD-0081-4B44-9256-B35F5B16421F}" ShortID="155218888" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{EDADDB6E-3E56-4634-8B3F-9BFC5E1C204C}" Global="false">
+									<ObjectRef Name="TrumpGetHug" ID="{342B6CA3-5ABA-4293-A953-9E88EB48A5A6}" WorkUnitID="{A240254B-F1C4-42B7-A7E9-B2B21B34BA9C}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="YouLoose" ID="{0BD1DBAB-BBAF-4203-B7A9-C8EA57019212}">
+					<ChildrenList>
+						<Action Name="Play" ID="{5B5F9B22-AACD-4548-9B72-87D8DF140D4F}" ShortID="322351080" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{9C38E570-7BE2-4E7A-8564-1C14C6C42285}" Global="false">
+									<ObjectRef Name="YouLoose" ID="{B6FB73C4-2FBF-482F-B94A-10551E7EB00A}" WorkUnitID="{A240254B-F1C4-42B7-A7E9-B2B21B34BA9C}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="YouWin" ID="{D235F549-443C-4EA8-A01D-B954AE3BB8AE}">
+					<ChildrenList>
+						<Action Name="Play" ID="{3E5D7A66-C3B1-45D7-A016-DF32A458CB7B}" ShortID="709062437" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{F3A667BF-70C0-45DC-86B9-156E77FCD236}" Global="false">
+									<ObjectRef Name="YouWin" ID="{7387A75A-15F4-4DEB-AE45-B9CE63FA04C1}" WorkUnitID="{A240254B-F1C4-42B7-A7E9-B2B21B34BA9C}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
 	</Events>
 </WwiseDocument>
