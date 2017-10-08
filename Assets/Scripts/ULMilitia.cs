@@ -22,11 +22,11 @@ public class ULMilitia : ULCharacter {
 		return direction;
 	}
 
-	public void RunAway () {
+	public override void RunAway () {
 		militiaTarget.tag = "Untagged";
 		militiaTarget = null;
 		hunter = false;
-		Debug.Log ("Run away : " + gameObject);
+		base.RunAway ();
 	}
 
 	public override void Hugged (ULPlayerController player) {
@@ -57,7 +57,7 @@ public class ULMilitia : ULCharacter {
 
 	public void ChooseTarget () {
 		Transform overlapOrigin = ULGlobals.player.transform;
-		Collider2D[] results = Physics2D.OverlapCircleAll (overlapOrigin.position, ULGlobals.militiaChooseRadius, 1 << 8);
+		Collider2D[] results = Physics2D.OverlapCircleAll (overlapOrigin.position, ULGlobals.militiaChooseRadius, 256); // Huggable (1 << 8)
 		foreach (Collider2D c in results) {
 			if (TakeAsTarget (c.GetComponent<ULFollowerController> ()))
 				break;

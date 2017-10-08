@@ -47,5 +47,11 @@ public abstract class ULCharacter : MonoBehaviour {
 	public virtual void Hugged (ULPlayerController player) {
 	}
 
+	public virtual void RunAway () {
+		animator.Play ("Walk");
+		sr.flipX = true;
+		Destroy (this);
+	}
+
 	protected abstract Vector3 GetAxis ();
 }

@@ -52,6 +52,7 @@ public class ULFollowerController : ULCharacter {
 		}
 		else if (state == FollowerState.Handcuffed) {
 			StopCoroutine ("HandcuffCountDown");
+			gameObject.layer = 8; // Huggable
 			state = FollowerState.Gai;
 			transform.parent = followedGroup;
 			ChangeSprite ();
@@ -60,6 +61,7 @@ public class ULFollowerController : ULCharacter {
 
 	public void Handcuff (ULCharacter militia) {
 		if (state != FollowerState.Handcuffed) {
+			gameObject.layer = 10; // Handcuffed
 			transform.parent = null;
 			state = FollowerState.Handcuffed;
 			StartCoroutine ("HandcuffCountDown");
