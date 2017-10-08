@@ -3,39 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ULFence : MonoBehaviour {
-	public Sprite closed;
-	public Sprite openable;
-	public Sprite open;
 	public int minCrowd = 20;
-	protected SpriteRenderer sr;
-	public delegate void OpenEvent();
+	public delegate void OpenEvent ();
 	public OpenEvent OnOpen;
-
-	void Start () {
-		sr = GetComponent<SpriteRenderer> ();
-	}
+	private bool isOpen = false;
 
 	void Update () {
-		if(ULFollowerController.gaiCount >= minCrowd) {
-			sr.sprite = openable;
+		if (ULFollowerController.gaiCount >= minCrowd) {
 		}
 		else {
-			sr.sprite = closed;
 		}
 	}
 
 	private void OnCollisionEnter2D (Collision2D collision) {
-		if (collision.gameObject.GetComponent<ULPlayerController>() != null && ULFollowerController.gaiCount >= minCrowd) {
-			Destroy (GetComponent<BoxCollider2D> ());
+		if (isOpen)
+			return;
+		if (collision.gameObject.GetComponent<ULPlayerController> () != null && ULFollowerController.gaiCount >= minCrowd) {
+			isOpen = true;
 			StartCoroutine ("Open");
 		}
 	}
 
 	private IEnumerator Open () {
-		yield return null;
-		sr.sprite = open;
+		transform.GetChild (2).gameObject.SetActive (true);
+		Destroy (transform.GetChild (0).gameObject);
+		Destroy (transform.GetChild (1).gameObject);
 		if (OnOpen != null)
 			OnOpen ();
 		Destroy (this);
+		yield return null;
 	}
 }

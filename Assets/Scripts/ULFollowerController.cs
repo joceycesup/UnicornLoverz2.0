@@ -51,12 +51,14 @@ public class ULFollowerController : ULCharacter {
 		else if (state == FollowerState.Handcuffed) {
 			StopCoroutine ("HandcuffCountDown");
 			state = FollowerState.Gai;
+			transform.parent = followedGroup;
 			ChangeSprite ();
 		}
 	}
 
 	public void Handcuff (ULCharacter militia) {
 		if (state != FollowerState.Handcuffed) {
+			transform.parent = null;
 			state = FollowerState.Handcuffed;
 			StartCoroutine ("HandcuffCountDown");
 		}

@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ULCharacter : MonoBehaviour
-{
-    public bool toTheRight = true;
+public abstract class ULCharacter : MonoBehaviour {
+	public bool toTheRight = true;
 	protected SpriteRenderer sr;
 	protected Animator animator;
 
 	protected virtual void Init () {
+		if (GetComponent<ULSpritesSorter> () == null)
+			gameObject.AddComponent<ULSpritesSorter> ();
 		sr = GetComponent<SpriteRenderer> ();
 		animator = GetComponent<Animator> ();
 	}
@@ -18,7 +19,6 @@ public abstract class ULCharacter : MonoBehaviour
 	}
 
 	protected virtual void CharUpdate () {
-
 	}
 
 	private void Update () {
