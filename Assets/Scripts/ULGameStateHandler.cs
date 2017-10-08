@@ -29,16 +29,20 @@ public class ULGameStateHandler : MonoBehaviour {
 			case GameState.None:
 				break;
 			case GameState.Menu:
+				Cursor.visible = true;
 				break;
 			case GameState.Credits:
+				Cursor.visible = true;
 				break;
 			case GameState.Game:
+				Cursor.visible = false;
 				if (state != GameState.Pause)
 					AkSoundEngine.SetState ("States_Zone", "Zone01");
 				else
 					AkSoundEngine.PostEvent ("Unpause", ULGlobalSoundManager.instance);
 				break;
 			case GameState.Pause:
+				Cursor.visible = true;
 				AkSoundEngine.PostEvent ("Pause", ULGlobalSoundManager.instance);
 				break;
 		}
@@ -63,15 +67,31 @@ public class ULGameStateHandler : MonoBehaviour {
 		Debug.LogWarning ("Reload");
 	}
 
-	public static void Victory () {
+	public static void EndGame (bool victory) {
+		instance.StartCoroutine (StartEnd (victory));
+	}
+
+	private static IEnumerator StartEnd(bool victory) {
+		yield return new WaitForSeconds (ULGlobals.endDelay);
+		if (victory)
+			Victory ();
+		else
+			Failed ();
+	}
+
+	private static void Victory () {
 		SetState (GameState.End);
 		AkSoundEngine.PostEvent ("YouWin", ULGlobalSoundManager.instance);
+		ULGlobals.UIList[1].transform.parent.gameObject.SetActive (true);
+		ULGlobals.UIList[1].gameObject.SetActive (true);
 		Debug.LogWarning ("Victory");
 	}
 
-	public static void Failed () {
+	private static void Failed () {
 		SetState (GameState.End);
 		AkSoundEngine.PostEvent ("YouLoose", ULGlobalSoundManager.instance);
+		ULGlobals.UIList[0].transform.parent.gameObject.SetActive (true);
+		ULGlobals.UIList[0].gameObject.SetActive (true);
 		Debug.LogWarning ("Failed");
 	}
 }

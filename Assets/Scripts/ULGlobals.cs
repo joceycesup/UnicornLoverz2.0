@@ -32,10 +32,13 @@ public class ULGlobals : MonoBehaviour {
 	public float _iaDistanceThreshold = 10.0f;
 	public static float iaDistanceThreshold { get { return instance._iaDistanceThreshold; } }
 
-    public RuntimeAnimatorController[] _animatorListHappy;
-    public static RuntimeAnimatorController[] animatorListHappy { get { return instance._animatorListHappy; } }
+	public RuntimeAnimatorController[] _animatorListHappy;
+	public static RuntimeAnimatorController[] animatorListHappy { get { return instance._animatorListHappy; } }
 
-    public float _playerSpeed = 25.0f;
+	public GameObject[] _UIList;
+	public static GameObject[] UIList { get { return instance._UIList; } }
+
+	public float _playerSpeed = 25.0f;
 	public static float playerSpeed { get { return instance._playerSpeed; } }
 	public float _militiaSpeed = 25.0f;
 	public static float militiaSpeed { get { return instance._militiaSpeed; } }
@@ -44,8 +47,10 @@ public class ULGlobals : MonoBehaviour {
 
     public float _hugDuration = 5.0f;
     public static float hugDuration { get { return instance._hugDuration; } }
-    public float _emptyHugDuration = 5.0f;
-    public static float emptyHugDuration { get { return instance._emptyHugDuration; } }
+	public float _emptyHugDuration = 5.0f;
+	public static float emptyHugDuration { get { return instance._emptyHugDuration; } }
+	public float _endDelay = 2.5f;
+	public static float endDelay { get { return instance._endDelay; } }
 
 	public Vector2 _randomConvertSound = new Vector2 (5.0f, 20.0f);
 	public static Vector2 randomConvertSound { get { return instance._randomConvertSound; } }

@@ -23,8 +23,14 @@ public class ULPlayerController : ULCharacter {
 			Collider2D coll = GetTarget ();
 			isHugging = true;
 			if (coll != null) {
-				if (coll.GetComponent<ULCharacter> ().Hugged (this))
-					StartCoroutine (HugAnim (coll.GetComponent<ULFollowerController> ()));
+				if (coll.GetComponent<ULCharacter> ().Hugged (this)) {
+					ULFollowerController fol = coll.GetComponent<ULFollowerController> ();
+					if (fol.state == ULFollowerController.FollowerState.Boss) {
+						animator.Play ("HugBoss");
+						Destroy (this);
+					}
+					StartCoroutine (HugAnim (fol));
+				}
 				else
 					isHugging = false;
 				//animator.Play("Hug");
@@ -43,7 +49,7 @@ public class ULPlayerController : ULCharacter {
 					AkSoundEngine.PostEvent ("TrumpGetPunch", ULGlobalSoundManager.instance);
 					animator.Play ("HitBoss");
 					Camera.main.gameObject.GetComponent<ULScreenShake> ().enabled = true;
-					ULGameStateHandler.Failed ();
+					ULGameStateHandler.EndGame (false);
 					isHugging = true;
 					Destroy (coll.gameObject);
 					Destroy (this);
@@ -76,7 +82,7 @@ public class ULPlayerController : ULCharacter {
 			yield return new WaitForSeconds (ULGlobals.hugDuration);
 		}
 		else {
-			this.sr.color = new Color (1.0f, 1.0f, 1.0f, 0f);
+			this.sr.color = new Color (1.0f, 1.0f, 1.0f, fo.state == ULFollowerController.FollowerState.Boss ? 1f : 0f);
 			yield return new WaitForSeconds (ULGlobals.hugDuration);
 		}
 		StartCoroutine ("Stop");

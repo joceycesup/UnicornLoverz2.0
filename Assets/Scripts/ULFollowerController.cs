@@ -73,10 +73,8 @@ public class ULFollowerController : ULCharacter {
 		}
 		else if (state == FollowerState.Boss) {
 			AkSoundEngine.PostEvent ("TrumpGetHug", ULGlobalSoundManager.instance);
-			player.animator.Play ("HugBoss");
-			ULGameStateHandler.Victory ();
-			Destroy (player);
-			Destroy (this);
+			ULGameStateHandler.EndGame (true);
+			Destroy (gameObject);
 		}
 		return true;
 	}
