@@ -7,7 +7,8 @@ public class ULFollowerController : ULCharacter {
 		Normal,
 		Gai,
 		Handcuffed,
-		Down
+		Down,
+		Boss
 	}
 
 	public static int gaiCount {
@@ -15,6 +16,8 @@ public class ULFollowerController : ULCharacter {
 		protected set { _gaiCount = value; }
 	}
 	protected static int _gaiCount = 0;
+
+	private bool BeingHugged = false;
 
 	public FollowerState state = FollowerState.Normal;
 
@@ -35,35 +38,60 @@ public class ULFollowerController : ULCharacter {
 				break;
 			case FollowerState.Down:
 				break;
+			case FollowerState.Boss:
+				break;
 		}
 	}
 
-	public override void Hugged (ULPlayerController player) {
+	public override bool Hugged (ULPlayerController player) {
+		if (state == FollowerState.Gai)
+			return false;
+		sr.flipX = player.sr.flipX;
 		if (state == FollowerState.Normal) {
 			state = FollowerState.Gai;
 			followedGroup = ULGlobals.followersGroup;
-			transform.parent = followedGroup;
 			Debug.Log ("Hugged " + transform);
 			if (gaiCount == 0)
 				followedGroup.position = transform.position;
 			localOrigin = Vector3.zero;
 			gaiCount++;
-			ChangeSprite ();
+			BeingHugged = true;
+			StartCoroutine ("Invisible");
+			animator.Play ("Hugged");
+
 		}
 		else if (state == FollowerState.Handcuffed) {
 			StopCoroutine ("HandcuffCountDown");
 			gameObject.layer = 8; // Huggable
 			state = FollowerState.Gai;
+			gameObject.tag = "Untagged";
 			transform.parent = followedGroup;
+			//ChangeSprite ();
+		}
+		else if (state == FollowerState.Boss) {
+			player.animator.Play ("HugBoss");
+			state = FollowerState.Gai;
+			ULGameStateHandler.Victory ();
 			ChangeSprite ();
 		}
+		return true;
 	}
 
+	private IEnumerator Invisible () {
+		yield return new WaitForSeconds (ULGlobals.hugDuration);
+		ChangeSprite ();
+		BeingHugged = false;
+		animator.Play ("Walk");
+		transform.parent = followedGroup;
+	}
+
+
 	public void Handcuff (ULCharacter militia) {
-		if (state != FollowerState.Handcuffed) {
+		if (state == FollowerState.Gai) {
 			gameObject.layer = 10; // Handcuffed
 			transform.parent = null;
 			state = FollowerState.Handcuffed;
+			ChangeSprite ();
 			StartCoroutine ("HandcuffCountDown");
 		}
 	}
@@ -92,7 +120,7 @@ public class ULFollowerController : ULCharacter {
 	public float speedModMax = 5f;
 
 	protected override void CharFixedUpdate () {
-		if (state == FollowerState.Handcuffed || state == FollowerState.Down)
+		if (state == FollowerState.Handcuffed || state == FollowerState.Down || BeingHugged)
 			return;
 
 		if (followedGroup != null) {

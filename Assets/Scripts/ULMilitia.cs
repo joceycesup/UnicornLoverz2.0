@@ -14,23 +14,22 @@ public class ULMilitia : ULCharacter {
 		enabled = false;
 	}
 
-	private void OnEnable () {
-		Debug.Log (gameObject);
-	}
-
 	protected override Vector3 GetAxis () {
 		return direction;
 	}
 
 	public override void RunAway () {
-		militiaTarget.tag = "Untagged";
-		militiaTarget = null;
+		if (militiaTarget != null) {
+			militiaTarget.tag = "Untagged";
+			militiaTarget = null;
+		}
 		hunter = false;
 		base.RunAway ();
 	}
 
-	public override void Hugged (ULPlayerController player) {
+	public override bool Hugged (ULPlayerController player) {
 		player.Push (Vector3.Normalize (player.transform.position - transform.position) * ULGlobals.militiaPushForce);
+		return false;
 	}
 
 	protected override void CharFixedUpdate () {
@@ -88,8 +87,16 @@ public class ULMilitia : ULCharacter {
 		if (militiaTarget == null)
 			return;
 		if (collision.gameObject.Equals (militiaTarget.gameObject)) {
+			animator.Play ("Handcuff");
 			militiaTarget.Handcuff (this);
 			idle = true;
+			StartCoroutine ("HandcuffGai");
 		}
+	}
+
+	private IEnumerator HandcuffGai () {
+		yield return new WaitForSeconds (ULGlobals.handcuffCountDown);
+		militiaTarget = null;
+		idle = false;
 	}
 }

@@ -6,8 +6,9 @@ using UnityEngine;
 public class ULPlayerController : ULCharacter {
 	public Vector2 hugHalfBox = new Vector2 (8.0f, 14.0f);
 	public float hugDistance = 8.0f;
-	private SpriteRenderer halo;
-    private bool isHugging = false;
+	public SpriteRenderer halo;
+
+	private bool isHugging = false;
 
 	protected override void Init () {
 		base.Init ();
@@ -15,30 +16,75 @@ public class ULPlayerController : ULCharacter {
 	}
 
 	protected override void CharUpdate () {
-        if (isHugging)
-            return;
-        base.CharUpdate();
-        if (Input.GetButtonDown ("Hug")) {
-			Collider2D coll = Physics2D.OverlapBox (transform.position + (toTheRight ? Vector3.right : Vector3.left) * hugDistance, hugHalfBox, 0.0f, 1280); // Huggable && Handcuffed ((1 << 8) | (1 << 10))
-
-            isHugging = true;                                                                                                                                            /*			
-																																							 Debug.DrawRay (transform.position + (toTheRight ? Vector3.right : Vector3.left) * hugDistance + Vector3.up * hugHalfBox.y + Vector3.left * hugHalfBox.x, Vector3.down * hugHalfBox.y * 2.0f, Color.magenta, 0.5f);
-																																							 Debug.DrawRay (transform.position + (toTheRight ? Vector3.right : Vector3.left) * hugDistance + Vector3.up * hugHalfBox.y + Vector3.left * hugHalfBox.x, Vector3.right * hugHalfBox.x * 2.0f, Color.magenta, 0.5f);
-																																							 Debug.DrawRay (transform.position + (toTheRight ? Vector3.right : Vector3.left) * hugDistance + Vector3.down * hugHalfBox.y + Vector3.right * hugHalfBox.x, Vector3.up * hugHalfBox.y * 2.0f, Color.magenta, 0.5f);
-																																							 Debug.DrawRay (transform.position + (toTheRight ? Vector3.right : Vector3.left) * hugDistance + Vector3.down * hugHalfBox.y + Vector3.right * hugHalfBox.x, Vector3.left * hugHalfBox.x * 2.0f, Color.magenta, 0.5f);//*/
-            if (coll != null) {
-				coll.GetComponent<ULCharacter> ().Hugged (this);
-                animator.Play("Hug");
+		if (isHugging)
+			return;
+		base.CharUpdate ();
+		if (Input.GetButtonDown ("Hug")) {
+			Collider2D coll = GetTarget ();
+			isHugging = true;
+			if (coll != null) {
+				if (coll.GetComponent<ULCharacter> ().Hugged (this))
+					StartCoroutine (HugAnim (coll.GetComponent<ULFollowerController> ()));
+				else
+					isHugging = false;
+				//animator.Play("Hug");
 			}
 			else {
 				animator.Play ("EmptyHug");
-            }
-            StartCoroutine(HugFollower(coll == null));
-        }
+			}
+			StartCoroutine (HugFollower (coll == null));
+		}
+		else if (Input.GetButtonDown ("Hit")) {
+			Collider2D coll = GetTarget ();
+			isHugging = true;
+			if (coll != null) {
+				ULFollowerController target = coll.GetComponent<ULFollowerController> ();
+				if (target.state == ULFollowerController.FollowerState.Boss) {
+					animator.Play ("HitBoss");
+					ULGameStateHandler.Failed ();
+				}
+			}
+			else {
+				animator.Play ("EmptyHug");
+			}
+			StartCoroutine (HugFollower (coll == null));
+		}
 		transform.Translate (GetAxis () * ULGlobals.playerSpeed * Time.fixedDeltaTime);
 
 		halo.color = new Color (1.0f, 1.0f, 1.0f, Mathf.Clamp01 (ULFollowerController.gaiCount / ULGlobals.maxFollowers));
 	}
+
+	private void LateUpdate () {
+		halo.sortingOrder = sr.sortingOrder - 1;
+	}
+
+	private Collider2D GetTarget () {
+		/*
+		Debug.DrawRay (transform.position + (toTheRight ? Vector3.right : Vector3.left) * hugDistance + Vector3.up * hugHalfBox.y + Vector3.left * hugHalfBox.x, Vector3.down * hugHalfBox.y * 2.0f, Color.magenta, 0.5f);
+		Debug.DrawRay (transform.position + (toTheRight ? Vector3.right : Vector3.left) * hugDistance + Vector3.up * hugHalfBox.y + Vector3.left * hugHalfBox.x, Vector3.right * hugHalfBox.x * 2.0f, Color.magenta, 0.5f);
+		Debug.DrawRay (transform.position + (toTheRight ? Vector3.right : Vector3.left) * hugDistance + Vector3.down * hugHalfBox.y + Vector3.right * hugHalfBox.x, Vector3.up * hugHalfBox.y * 2.0f, Color.magenta, 0.5f);
+		Debug.DrawRay (transform.position + (toTheRight ? Vector3.right : Vector3.left) * hugDistance + Vector3.down * hugHalfBox.y + Vector3.right * hugHalfBox.x, Vector3.left * hugHalfBox.x * 2.0f, Color.magenta, 0.5f);//*/
+		return Physics2D.OverlapBox (transform.position + (toTheRight ? Vector3.right : Vector3.left) * hugDistance, hugHalfBox, 0.0f, 1280);
+		// Huggable && Handcuffed ((1 << 8) | (1 << 10))
+	}
+
+	private IEnumerator HugAnim (ULFollowerController fo) {
+		if (fo.state == ULFollowerController.FollowerState.Handcuffed) {
+			animator.Play ("Freedom");
+			yield return new WaitForSeconds (ULGlobals.hugDuration);
+		}
+		else {
+			this.sr.color = new Color (1.0f, 1.0f, 1.0f, 0f);
+			yield return new WaitForSeconds (ULGlobals.hugDuration);
+		}
+		StartCoroutine ("Stop");
+	}
+
+	private IEnumerator Stop () {
+		this.sr.color = new Color (1.0f, 1.0f, 1.0f, 1.0f);
+		yield return null;
+	}
+
 
 	protected override void CharFixedUpdate () {
 		if (isHugging)
@@ -46,11 +92,10 @@ public class ULPlayerController : ULCharacter {
 		base.CharFixedUpdate ();
 	}
 
-	private IEnumerator HugFollower(bool empty)
-    {
-        yield return new WaitForSeconds(empty ? ULGlobals.emptyHugDuration : ULGlobals.hugDuration);
-        isHugging = false;
-    }
+	private IEnumerator HugFollower (bool empty) {
+		yield return new WaitForSeconds (empty ? ULGlobals.emptyHugDuration : ULGlobals.hugDuration);
+		isHugging = false;
+	}
 
 	public void Push (Vector3 force) {
 		transform.Translate (force);

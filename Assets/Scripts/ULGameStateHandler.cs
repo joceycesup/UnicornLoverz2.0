@@ -14,7 +14,18 @@ public class ULGameStateHandler : MonoBehaviour {
 			Destroy (this);
 	}
 
-	public static void Reload() {
+	public static void Reload () {
+		Debug.LogError ("Reload");
+		Debug.Break ();
+	}
 
+	public static void Victory () {
+		Debug.LogError ("Victory");
+		Debug.Break ();
+	}
+
+	public static void Failed () {
+		Debug.LogError ("Failed");
+		Debug.Break ();
 	}
 }
