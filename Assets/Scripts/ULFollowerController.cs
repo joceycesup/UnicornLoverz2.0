@@ -25,11 +25,13 @@ public class ULFollowerController : ULCharacter {
 
 	private void ChangeSprite () {
 		switch (state) {
-			case FollowerState.Normal:
+			case FollowerState.Normal: // A virer ?
 				break;
 			case FollowerState.Gai:
+                this.animator.runtimeAnimatorController = ULGlobals.animatorListHappy[Random.Range(0, 2)];
 				break;
 			case FollowerState.Handcuffed:
+                this.animator.Play("Handcuffed");
 				break;
 			case FollowerState.Down:
 				break;

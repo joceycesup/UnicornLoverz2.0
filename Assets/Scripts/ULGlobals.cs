@@ -32,9 +32,10 @@ public class ULGlobals : MonoBehaviour {
 	public float _iaDistanceThreshold = 10.0f;
 	public static float iaDistanceThreshold { get { return instance._iaDistanceThreshold; } }
 
+    public RuntimeAnimatorController[] _animatorListHappy;
+    public static RuntimeAnimatorController[] animatorListHappy { get { return instance._animatorListHappy; } }
 
-
-	public float _playerSpeed = 25.0f;
+    public float _playerSpeed = 25.0f;
 	public static float playerSpeed { get { return instance._playerSpeed; } }
 	public float _militiaSpeed = 25.0f;
 	public static float militiaSpeed { get { return instance._militiaSpeed; } }
