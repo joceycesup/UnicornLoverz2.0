@@ -64,8 +64,9 @@ public class ULFollowerController : ULCharacter {
 			StopCoroutine ("HandcuffCountDown");
 			gameObject.layer = 8; // Huggable
 			state = FollowerState.Gai;
+			gameObject.tag = "Untagged";
 			transform.parent = followedGroup;
-			ChangeSprite ();
+			//ChangeSprite ();
 		}
 		else if (state == FollowerState.Boss) {
 			player.animator.Play ("HugBoss");
@@ -90,6 +91,7 @@ public class ULFollowerController : ULCharacter {
 			gameObject.layer = 10; // Handcuffed
 			transform.parent = null;
 			state = FollowerState.Handcuffed;
+			ChangeSprite ();
 			StartCoroutine ("HandcuffCountDown");
 		}
 	}
