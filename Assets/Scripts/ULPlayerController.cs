@@ -20,11 +20,11 @@ public class ULPlayerController : ULCharacter {
 			return;
 		base.CharUpdate ();
 		if (Input.GetButtonDown ("Hug")) {
-			Collider2D coll  = GetTarget ();
+			Collider2D coll = GetTarget ();
 			isHugging = true;
 			if (coll != null) {
 				if (coll.GetComponent<ULCharacter> ().Hugged (this))
-					StartCoroutine ("Invisible");
+					StartCoroutine (HugAnim (coll.GetComponent<ULFollowerController> ()));
 				else
 					isHugging = false;
 				//animator.Play("Hug");
@@ -33,7 +33,8 @@ public class ULPlayerController : ULCharacter {
 				animator.Play ("EmptyHug");
 			}
 			StartCoroutine (HugFollower (coll == null));
-		}else if (Input.GetButtonDown ("Hit")) {
+		}
+		else if (Input.GetButtonDown ("Hit")) {
 			Collider2D coll = GetTarget ();
 			isHugging = true;
 			if (coll != null) {
@@ -67,9 +68,15 @@ public class ULPlayerController : ULCharacter {
 		// Huggable && Handcuffed ((1 << 8) | (1 << 10))
 	}
 
-	private IEnumerator Invisible () {
-		this.sr.color = new Color (1.0f, 1.0f, 1.0f, 0f);
-		yield return new WaitForSeconds (ULGlobals.hugDuration);
+	private IEnumerator HugAnim (ULFollowerController fo) {
+		if (fo.state == ULFollowerController.FollowerState.Handcuffed) {
+			animator.Play ("Freedom");
+			yield return new WaitForSeconds (ULGlobals.hugDuration);
+		}
+		else {
+			this.sr.color = new Color (1.0f, 1.0f, 1.0f, 0f);
+			yield return new WaitForSeconds (ULGlobals.hugDuration);
+		}
 		StartCoroutine ("Stop");
 	}
 

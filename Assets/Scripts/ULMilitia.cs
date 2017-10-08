@@ -87,7 +87,7 @@ public class ULMilitia : ULCharacter {
 		if (militiaTarget == null)
 			return;
 		if (collision.gameObject.Equals (militiaTarget.gameObject)) {
-			animator.Play ("Handcuffed");
+			animator.Play ("Handcuff");
 			militiaTarget.Handcuff (this);
 			idle = true;
 			StartCoroutine ("HandcuffGai");
