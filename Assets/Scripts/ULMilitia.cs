@@ -88,6 +88,7 @@ public class ULMilitia : ULCharacter {
 		if (militiaTarget == null)
 			return;
 		if (collision.gameObject.Equals (militiaTarget.gameObject)) {
+            animator.Play("Handcuffed");
 			militiaTarget.Handcuff (this);
 			idle = true;
 		}
