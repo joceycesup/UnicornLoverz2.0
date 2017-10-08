@@ -28,10 +28,10 @@ public class ULFollowerController : ULCharacter {
 			case FollowerState.Normal: // A virer ?
 				break;
 			case FollowerState.Gai:
-                this.animator.runtimeAnimatorController = ULGlobals.animatorListHappy[Random.Range(0, 3)];  
+				this.animator.runtimeAnimatorController = ULGlobals.animatorListHappy[Random.Range (0, ULGlobals.animatorListHappy.Length)];
 				break;
 			case FollowerState.Handcuffed:
-                this.animator.Play("Handcuffed");
+				this.animator.Play ("Handcuffed");
 				break;
 			case FollowerState.Down:
 				break;
@@ -64,7 +64,6 @@ public class ULFollowerController : ULCharacter {
 			gameObject.layer = 10; // Handcuffed
 			transform.parent = null;
 			state = FollowerState.Handcuffed;
-            ChangeSprite();
 			StartCoroutine ("HandcuffCountDown");
 		}
 	}

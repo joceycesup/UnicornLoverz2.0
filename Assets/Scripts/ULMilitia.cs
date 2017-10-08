@@ -63,7 +63,10 @@ public class ULMilitia : ULCharacter {
 				break;
 		}
 		if (militiaTarget == null)
-			militiaTarget = FindObjectOfType<ULFollowerController> ();
+			foreach (ULFollowerController f in FindObjectsOfType<ULFollowerController> ()) {
+				if (TakeAsTarget (f))
+					break;
+			}
 		if (militiaTarget == null)
 			ULGameStateHandler.Reload ();
 	}
@@ -86,7 +89,6 @@ public class ULMilitia : ULCharacter {
 			return;
 		if (collision.gameObject.Equals (militiaTarget.gameObject)) {
 			militiaTarget.Handcuff (this);
-            animator.Play("Handcuf");
 			idle = true;
 		}
 	}

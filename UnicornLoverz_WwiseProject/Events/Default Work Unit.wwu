@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{7F9C2B68-244F-492F-9CB3-DDF37AEBB80E}" SchemaVersion="75">
 	<Events>
+<<<<<<< HEAD
 		<WorkUnit Name="Default Work Unit" ID="{7F9C2B68-244F-492F-9CB3-DDF37AEBB80E}" PersistMode="Standalone">
 			<ChildrenList>
 				<Event Name="Convert" ID="{3375655B-B46B-4F29-AAC8-2992E2F69D4F}">
@@ -105,5 +106,8 @@
 				<Event Name="StartGameMusic" ID="{6780FACC-BA31-4AA0-8FBC-932D041B95E2}"/>
 			</ChildrenList>
 		</WorkUnit>
+=======
+		<WorkUnit Name="Default Work Unit" ID="{7F9C2B68-244F-492F-9CB3-DDF37AEBB80E}" PersistMode="Standalone"/>
+>>>>>>> origin/master
 	</Events>
 </WwiseDocument>
