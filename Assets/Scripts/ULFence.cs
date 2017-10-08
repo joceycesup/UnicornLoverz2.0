@@ -9,13 +9,6 @@ public class ULFence : MonoBehaviour {
 	public OpenEvent OnOpen;
 	private bool isOpen = false;
 
-	void Update () {
-		if (ULFollowerController.gaiCount >= minCrowd) {
-		}
-		else {
-		}
-	}
-
 	private void OnCollisionEnter2D (Collision2D collision) {
 		if (isOpen)
 			return;
@@ -27,6 +20,7 @@ public class ULFence : MonoBehaviour {
 	private IEnumerator Open () {
 		if (!isOpen) {
 			AkSoundEngine.SetState ("States_Zone", "Zone" + (zoneNumber.ToString ("00")));
+			AkSoundEngine.PostEvent ("DoorOpen", ULGlobalSoundManager.instance);
 			transform.GetChild (2).gameObject.SetActive (true);
 			Destroy (transform.GetChild (0).gameObject);
 			Destroy (transform.GetChild (1).gameObject);

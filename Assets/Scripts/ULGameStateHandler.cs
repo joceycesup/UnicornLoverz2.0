@@ -10,15 +10,21 @@ public class ULGameStateHandler : MonoBehaviour {
 		Menu,
 		Credits,
 		Game,
-		Pause
+		Pause,
+		End
 	}
 
-	public GameState state {
-		get;
-		private set;
+	public static GameState state {
+		get { return instance._state; }
+		private set { instance._state = value; }
+	}
+	public GameState _state;
+
+	public static void SetState (GameState s) {
+		instance.SetGameState (s);
 	}
 
-	public void SetState (GameState s) {
+	public void SetGameState (GameState s) {
 		switch (s) {
 			case GameState.None:
 				break;
@@ -58,11 +64,13 @@ public class ULGameStateHandler : MonoBehaviour {
 	}
 
 	public static void Victory () {
+		SetState (GameState.End);
 		AkSoundEngine.PostEvent ("YouWin", ULGlobalSoundManager.instance);
 		Debug.LogWarning ("Victory");
 	}
 
 	public static void Failed () {
+		SetState (GameState.End);
 		AkSoundEngine.PostEvent ("YouLoose", ULGlobalSoundManager.instance);
 		Debug.LogWarning ("Failed");
 	}

@@ -27,8 +27,8 @@ public class ULGlobals : MonoBehaviour {
 	public float _handcuffRadius = 5.0f;
 	public static float handcuffRadius { get { return instance._handcuffRadius; } }
 
-	public Transform _followersGroup = null;
-	public static Transform followersGroup { get { return instance._followersGroup; } }
+	private Transform _followersGroup = null;
+	public static Transform followersGroup { get { return instance._followersGroup; } private set { instance._followersGroup = value; } }
 	public float _iaDistanceThreshold = 10.0f;
 	public static float iaDistanceThreshold { get { return instance._iaDistanceThreshold; } }
 
@@ -56,6 +56,7 @@ public class ULGlobals : MonoBehaviour {
 		if (instance == null) {
 			instance = this;
 			player = FindObjectOfType<ULPlayerController> ();
+			followersGroup = FindObjectOfType<ULCrowdControl> ().transform;
 			followersGroup.position = player.transform.position;
 			DontDestroyOnLoad (gameObject);
 		}

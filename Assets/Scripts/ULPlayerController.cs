@@ -36,8 +36,8 @@ public class ULPlayerController : ULCharacter {
 		}
 		else if (Input.GetButtonDown ("Hit")) {
 			Collider2D coll = GetTarget ();
-			isHugging = true;
 			if (coll != null) {
+				isHugging = true;
 				ULFollowerController target = coll.GetComponent<ULFollowerController> ();
 				if (target.state == ULFollowerController.FollowerState.Boss) {
 					AkSoundEngine.PostEvent ("TrumpGetPunch", ULGlobalSoundManager.instance);
@@ -48,6 +48,7 @@ public class ULPlayerController : ULCharacter {
 					Destroy (coll.gameObject);
 					Destroy (this);
 				}
+				isHugging = false;
 			}
 		}
 		transform.Translate (GetAxis () * ULGlobals.playerSpeed * Time.fixedDeltaTime);

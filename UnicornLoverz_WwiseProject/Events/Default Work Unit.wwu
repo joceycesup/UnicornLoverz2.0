@@ -67,6 +67,24 @@
 								</Element>
 							</ElementList>
 						</Action>
+						<Action Name="Stop" ID="{BB99A8D1-6A01-4123-9386-EE5CC57ACBDD}" ShortID="1071483737" Type="Stop" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{08DE4EE6-B652-4799-9F47-427CBC434F1F}" Global="false">
+									<ObjectRef Name="RireTrump" ID="{CE9CB701-69F2-422E-8453-EB2C87473CF9}" WorkUnitID="{A240254B-F1C4-42B7-A7E9-B2B21B34BA9C}"/>
+								</Element>
+							</ElementList>
+						</Action>
+						<Action Name="Stop" ID="{2F642E12-C74C-4818-933F-6E1C81B54BAB}" ShortID="51769945" Type="Stop" Scope="One" Global="false">
+							<PropertyList>
+								<Property Name="FadeCurve" Type="int16" Value="6"/>
+								<Property Name="FadeTime" Type="Real64" Value="3"/>
+							</PropertyList>
+							<ElementList>
+								<Element ID="{9AC393AE-6EB5-4BC3-B63F-933FE58D5604}" Global="false">
+									<ObjectRef Name="music" ID="{B759F059-4CF8-4D78-9F92-1D455E830634}" WorkUnitID="{2EDA877A-9E30-4284-8FA2-701D191BD3C0}"/>
+								</Element>
+							</ElementList>
+						</Action>
 					</ChildrenList>
 				</Event>
 				<Event Name="TrumpGetHug" ID="{168B0A35-9F51-4650-A678-1AC0AE2F06DC}">
@@ -75,6 +93,24 @@
 							<ElementList>
 								<Element ID="{EDADDB6E-3E56-4634-8B3F-9BFC5E1C204C}" Global="false">
 									<ObjectRef Name="TrumpGetHug" ID="{342B6CA3-5ABA-4293-A953-9E88EB48A5A6}" WorkUnitID="{A240254B-F1C4-42B7-A7E9-B2B21B34BA9C}"/>
+								</Element>
+							</ElementList>
+						</Action>
+						<Action Name="Stop" ID="{B9C700F3-423D-4965-ADA9-D94021544138}" ShortID="542060011" Type="Stop" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{B17CB69E-9987-4FBE-B2B5-FCB110E8324F}" Global="false">
+									<ObjectRef Name="RireTrump" ID="{CE9CB701-69F2-422E-8453-EB2C87473CF9}" WorkUnitID="{A240254B-F1C4-42B7-A7E9-B2B21B34BA9C}"/>
+								</Element>
+							</ElementList>
+						</Action>
+						<Action Name="Stop" ID="{4568137A-C4E6-4873-B029-F1FF588D7481}" ShortID="599941577" Type="Stop" Scope="One" Global="false">
+							<PropertyList>
+								<Property Name="FadeCurve" Type="int16" Value="6"/>
+								<Property Name="FadeTime" Type="Real64" Value="3"/>
+							</PropertyList>
+							<ElementList>
+								<Element ID="{D53DC744-F35A-43F6-86E0-22FE3599B9B8}" Global="false">
+									<ObjectRef Name="music" ID="{B759F059-4CF8-4D78-9F92-1D455E830634}" WorkUnitID="{2EDA877A-9E30-4284-8FA2-701D191BD3C0}"/>
 								</Element>
 							</ElementList>
 						</Action>
@@ -102,7 +138,57 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="StartGameMusic" ID="{6780FACC-BA31-4AA0-8FBC-932D041B95E2}"/>
+				<Event Name="StartGameMusic" ID="{6780FACC-BA31-4AA0-8FBC-932D041B95E2}">
+					<ChildrenList>
+						<Action Name="Play" ID="{B641570C-788D-4CAC-8C0F-FA75FFE7A3FA}" ShortID="218917177" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{3A6CBF3C-7562-4C1C-A832-DD88F30730D1}" Global="false">
+									<ObjectRef Name="music" ID="{B759F059-4CF8-4D78-9F92-1D455E830634}" WorkUnitID="{2EDA877A-9E30-4284-8FA2-701D191BD3C0}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Pause" ID="{D24705E2-DD6E-492E-B703-2ABED4ACC15E}">
+					<ChildrenList>
+						<Action Name="Set Voice Low-pass Filter" ID="{018E84D0-6E31-494C-A6E7-EE901F8A4C4B}" ShortID="299645425" Type="ChangeLPF" Scope="One" Global="false">
+							<PropertyList>
+								<Property Name="FadeTime" Type="Real64" Value="1"/>
+								<Property Name="Lowpass" Type="int16" Value="40"/>
+							</PropertyList>
+							<ElementList>
+								<Element ID="{318B6727-9A12-4B59-A5A6-4BB42983A261}" Global="false">
+									<ObjectRef Name="music" ID="{B759F059-4CF8-4D78-9F92-1D455E830634}" WorkUnitID="{2EDA877A-9E30-4284-8FA2-701D191BD3C0}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Unpause" ID="{B257B248-D72E-4340-B9F2-90E2D5C029C6}">
+					<ChildrenList>
+						<Action Name="Set Voice Low-pass Filter" ID="{5614D8A6-33CA-4C4D-80C5-407A33DFA2EC}" ShortID="108839905" Type="ChangeLPF" Scope="One" Global="false">
+							<PropertyList>
+								<Property Name="FadeTime" Type="Real64" Value="1"/>
+							</PropertyList>
+							<ElementList>
+								<Element ID="{EC7730C9-19CA-46CD-8137-6BB5A91E4F2B}" Global="false">
+									<ObjectRef Name="music" ID="{B759F059-4CF8-4D78-9F92-1D455E830634}" WorkUnitID="{2EDA877A-9E30-4284-8FA2-701D191BD3C0}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="DoorOpen" ID="{20B1AAD0-A929-478D-B0EA-A3C7BBEA8710}">
+					<ChildrenList>
+						<Action Name="Play" ID="{7E25664E-0075-4B60-BB45-BF3AF10D2E6D}" ShortID="339374448" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{EEB6A4BA-6A3A-43BB-9023-2CEBBBB60F6A}" Global="false">
+									<ObjectRef Name="DoorOpen" ID="{85FB4E4A-297E-4365-BB6C-08871315571F}" WorkUnitID="{A240254B-F1C4-42B7-A7E9-B2B21B34BA9C}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

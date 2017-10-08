@@ -4,39 +4,37 @@ using UnityEngine;
 
 public class ULCanvasController : MonoBehaviour {
 	private static GameObject buttonHug;
-	private static bool boolbuttonHug = false;
 	private static GameObject buttonHit;
-	private static bool boolbuttonHit = false;
-	private static GameObject EndPanel;
-
-	// Use this for initialization
+	private static GameObject endPanel;
+	
 	void Start () {
 		buttonHug = GameObject.Find ("HugButton");
 		buttonHit = GameObject.Find ("HitButton");
 		buttonHug.SetActive (false);
 		buttonHit.SetActive (false);
 	}
-
-	// Update is called once per frame
-	void FixedUpdate () {
-		if (boolbuttonHug) {
+	
+	void Update () {
+		if (buttonHug.activeInHierarchy) {
 			if (ULFollowerController.gaiCount != 0) {
 				buttonHug.SetActive (false);
-				boolbuttonHug = false;
+			}
+		}
+		if (buttonHit.activeInHierarchy) {
+			if (ULGameStateHandler.state == ULGameStateHandler.GameState.End) {
+				buttonHit.SetActive (false);
 			}
 		}
 	}
 
 	public static void ActiveButtonHug () {
-		if (!boolbuttonHug && ULFollowerController.gaiCount == 0) {
-			boolbuttonHug = true;
+		if (!buttonHug.activeInHierarchy && ULFollowerController.gaiCount == 0) {
 			buttonHug.SetActive (true);
 		}
 	}
 
 	public static void ActiveButtonHit () {
-		if (!boolbuttonHit) {
-			boolbuttonHit = true;
+		if (!buttonHit.activeInHierarchy) {
 			buttonHit.SetActive (true);
 		}
 	}

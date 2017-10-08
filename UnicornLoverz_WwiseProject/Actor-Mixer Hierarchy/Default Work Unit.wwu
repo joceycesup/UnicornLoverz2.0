@@ -524,6 +524,11 @@
 								</ModifierInfo>
 							</ModifierList>
 						</Property>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-12</Value>
+							</ValueList>
+						</Property>
 					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
@@ -645,6 +650,11 @@
 									</Modifier>
 								</ModifierInfo>
 							</ModifierList>
+						</Property>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-11</Value>
+							</ValueList>
 						</Property>
 					</PropertyList>
 					<ReferenceList>
@@ -773,9 +783,6 @@
 						<Reference Name="OutputBus">
 							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{62337AAA-6E6A-4064-86E4-33801362B3A4}"/>
 						</Reference>
-						<Reference Name="UserAuxSend0">
-							<ObjectRef Name="Rev_Bus" ID="{1DB1BC8C-27FD-4D49-88ED-D05665CC037B}" WorkUnitID="{62337AAA-6E6A-4064-86E4-33801362B3A4}"/>
-						</Reference>
 					</ReferenceList>
 					<ChildrenList>
 						<AudioFileSource Name="YouLoose" ID="{48E97D97-241C-45C5-BBC6-AC8056BA147E}" ShortID="284413993">
@@ -801,9 +808,6 @@
 						</Reference>
 						<Reference Name="OutputBus">
 							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{62337AAA-6E6A-4064-86E4-33801362B3A4}"/>
-						</Reference>
-						<Reference Name="UserAuxSend0">
-							<ObjectRef Name="Rev_Bus" ID="{1DB1BC8C-27FD-4D49-88ED-D05665CC037B}" WorkUnitID="{62337AAA-6E6A-4064-86E4-33801362B3A4}"/>
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
@@ -833,9 +837,6 @@
 								<Reference Name="OutputBus">
 									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{62337AAA-6E6A-4064-86E4-33801362B3A4}"/>
 								</Reference>
-								<Reference Name="UserAuxSend0">
-									<ObjectRef Name="Rev_Bus" ID="{1DB1BC8C-27FD-4D49-88ED-D05665CC037B}" WorkUnitID="{62337AAA-6E6A-4064-86E4-33801362B3A4}"/>
-								</Reference>
 							</ReferenceList>
 							<ChildrenList>
 								<AudioFileSource Name="PlayerHitTrump" ID="{994F5E35-2856-4518-992F-A859DE7A8071}" ShortID="410758820">
@@ -863,9 +864,6 @@
 								<Reference Name="OutputBus">
 									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{62337AAA-6E6A-4064-86E4-33801362B3A4}"/>
 								</Reference>
-								<Reference Name="UserAuxSend0">
-									<ObjectRef Name="Rev_Bus" ID="{1DB1BC8C-27FD-4D49-88ED-D05665CC037B}" WorkUnitID="{62337AAA-6E6A-4064-86E4-33801362B3A4}"/>
-								</Reference>
 							</ReferenceList>
 							<ChildrenList>
 								<AudioFileSource Name="RireTrump" ID="{A68BCB58-A507-4D55-8605-A164B5124212}" ShortID="1042805070">
@@ -892,9 +890,6 @@
 								<Reference Name="OutputBus">
 									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{62337AAA-6E6A-4064-86E4-33801362B3A4}"/>
 								</Reference>
-								<Reference Name="UserAuxSend0">
-									<ObjectRef Name="Rev_Bus" ID="{1DB1BC8C-27FD-4D49-88ED-D05665CC037B}" WorkUnitID="{62337AAA-6E6A-4064-86E4-33801362B3A4}"/>
-								</Reference>
 							</ReferenceList>
 							<ChildrenList>
 								<AudioFileSource Name="TrumpGetHug" ID="{98617214-F425-4BA6-81DF-62562D22D7B1}" ShortID="89462373">
@@ -908,6 +903,25 @@
 						</Sound>
 					</ChildrenList>
 				</Folder>
+				<Sound Name="DoorOpen" ID="{85FB4E4A-297E-4365-BB6C-08871315571F}" ShortID="610596195" Type="SoundFX">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{1F1300D0-DF15-4F5B-B1EA-527102F883E4}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{62337AAA-6E6A-4064-86E4-33801362B3A4}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="DoorOpen" ID="{2F814393-9E5F-474F-B3F1-B3031CBE114F}" ShortID="211953173">
+							<Language>SFX</Language>
+							<AudioFile>DoorOpen.wav</AudioFile>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="DoorOpen" ID="{2F814393-9E5F-474F-B3F1-B3031CBE114F}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>
