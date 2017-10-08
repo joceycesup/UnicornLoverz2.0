@@ -25,6 +25,8 @@ public class ULPlayerController : ULCharacter {
 			if (coll != null) {
 				if (coll.GetComponent<ULCharacter> ().Hugged (this))
 					StartCoroutine ("Invisible");
+				else
+					isHugging = false;
 				//animator.Play("Hug");
 			}
 			else {

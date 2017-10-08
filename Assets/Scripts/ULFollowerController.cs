@@ -17,9 +17,9 @@ public class ULFollowerController : ULCharacter {
 	}
 	protected static int _gaiCount = 0;
 
-    private bool BeingHugged = false;
+	private bool BeingHugged = false;
 
-    public FollowerState state = FollowerState.Normal;
+	public FollowerState state = FollowerState.Normal;
 
 	protected override void Init () {
 		base.Init ();
@@ -46,6 +46,7 @@ public class ULFollowerController : ULCharacter {
 	public override bool Hugged (ULPlayerController player) {
 		if (state == FollowerState.Gai)
 			return false;
+		sr.flipX = player.sr.flipX;
 		if (state == FollowerState.Normal) {
 			state = FollowerState.Gai;
 			followedGroup = ULGlobals.followersGroup;
@@ -54,9 +55,9 @@ public class ULFollowerController : ULCharacter {
 				followedGroup.position = transform.position;
 			localOrigin = Vector3.zero;
 			gaiCount++;
-            BeingHugged = true;
-            StartCoroutine("Invisible");
-            animator.Play("Hugged");
+			BeingHugged = true;
+			StartCoroutine ("Invisible");
+			animator.Play ("Hugged");
 
 		}
 		else if (state == FollowerState.Handcuffed) {
@@ -75,17 +76,16 @@ public class ULFollowerController : ULCharacter {
 		return true;
 	}
 
-    private IEnumerator Invisible()
-    {
-        yield return new WaitForSeconds(ULGlobals.hugDuration);
-        ChangeSprite();
-        BeingHugged = false;
-        animator.Play("Walk");
-        transform.parent = followedGroup;
-    }
+	private IEnumerator Invisible () {
+		yield return new WaitForSeconds (ULGlobals.hugDuration);
+		ChangeSprite ();
+		BeingHugged = false;
+		animator.Play ("Walk");
+		transform.parent = followedGroup;
+	}
 
 
-    public void Handcuff (ULCharacter militia) {
+	public void Handcuff (ULCharacter militia) {
 		if (state == FollowerState.Gai) {
 			gameObject.layer = 10; // Handcuffed
 			transform.parent = null;

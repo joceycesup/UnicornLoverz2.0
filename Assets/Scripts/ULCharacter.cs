@@ -4,7 +4,11 @@ using UnityEngine;
 
 public abstract class ULCharacter : MonoBehaviour {
 	public bool toTheRight = true;
-	protected SpriteRenderer sr;
+	protected SpriteRenderer _sr;
+	public SpriteRenderer sr {
+		get { return _sr; }
+		protected set { _sr = value; }
+	}
 	protected Animator _animator;
 	public Animator animator {
 		get { return _animator; }
