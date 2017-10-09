@@ -13,6 +13,8 @@ public class ULScreenShake : MonoBehaviour {
 	}
 	//*
 	void Update () {
+		if (ULGameStateHandler.state == ULGameStateHandler.GameState.Pause)
+			return;
 		transform.localPosition += direction * Time.deltaTime;
 		if (transform.localPosition.x > shakeRadius) {
 			transform.localPosition = new Vector3 (shakeRadius, transform.localPosition.y);

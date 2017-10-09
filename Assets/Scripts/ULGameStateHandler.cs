@@ -30,36 +30,41 @@ public class ULGameStateHandler : MonoBehaviour {
 				break;
 			case GameState.Menu:
 				Cursor.visible = true;
-				AkSoundEngine.PostEvent ("StartGameMusic", ULGlobalSoundManager.instance);
+				if (state == GameState.End)
+					AkSoundEngine.PostEvent ("StartGameMusic", ULGlobalSoundManager.instance);
 				AkSoundEngine.SetState ("States_Zone", "Zone01");
 				break;
 			case GameState.Credits:
 				Cursor.visible = true;
 				break;
 			case GameState.Game:
-				Cursor.visible = false;
-				ULGlobals.UIList[2].gameObject.SetActive (false);
+				SetPause (false);
 				if (state != GameState.Pause) {
 					ULGlobals.Init ();
-					AkSoundEngine.PostEvent ("StartGameMusic", ULGlobalSoundManager.instance);
 					AkSoundEngine.SetState ("States_Zone", "Zone01");
 				}
 				else
 					AkSoundEngine.PostEvent ("Unpause", ULGlobalSoundManager.instance);
 				break;
 			case GameState.Pause:
-				Cursor.visible = true;
-				ULGlobals.UIList[2].gameObject.SetActive (true);
+				SetPause (true);
 				AkSoundEngine.PostEvent ("Pause", ULGlobalSoundManager.instance);
 				break;
 		}
 		state = s;
 	}
 
+	private void SetPause (bool show) {
+		Cursor.visible = show;
+		ULGlobals.UIList[2].gameObject.SetActive (show);
+		Time.timeScale = show?0.0f:1.0f;
+	}
+
 	private void Awake () {
 		if (instance == null) {
 			instance = this;
 			gameObject.AddComponent<ULGlobalSoundManager> ();
+			AkSoundEngine.PostEvent ("StartGameMusic", ULGlobalSoundManager.instance);
 			DontDestroyOnLoad (gameObject);
 			SetState (_state);
 		}
@@ -92,18 +97,22 @@ public class ULGameStateHandler : MonoBehaviour {
 		AkSoundEngine.PostEvent ("YouLoose", ULGlobalSoundManager.instance);
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
 		Debug.LogWarning ("Reload");
+		SetState (GameState.Game);
 	}
 
 	public static void EndGame (bool victory) {
 		instance.StartCoroutine (StartEnd (victory));
 	}
 
-	private static IEnumerator StartEnd(bool victory) {
+	private static IEnumerator StartEnd (bool victory) {
 		yield return new WaitForSeconds (ULGlobals.endDelay);
 		if (victory)
 			Victory ();
 		else
 			Failed ();
+		yield return new WaitForSeconds (ULGlobals.backToMenuDelay);
+		SetState (GameState.Menu);
+		SceneManager.LoadScene ("START SCREEN");
 	}
 
 	private static void Victory () {

@@ -21,7 +21,8 @@ public class ULCrowdControl : MonoBehaviour {
 
 	// Update is called once per frame
 	void FixedUpdate () {
-
+		if (ULGameStateHandler.state == ULGameStateHandler.GameState.Pause)
+			return;
 		if (previousPositions.Count > 1 && cptPos % 2 == 0) {
 			tmpPosition = previousPositions.Dequeue ();
 		}
@@ -38,7 +39,8 @@ public class ULCrowdControl : MonoBehaviour {
 
 		if (ULGlobals.player == null) {
 			Destroy (this);
-		} else {
+		}
+		else {
 			Vector3 temp = (lastPosition - ULGlobals.player.transform.position);
 
 			if (temp.magnitude > 1) {
@@ -50,12 +52,11 @@ public class ULCrowdControl : MonoBehaviour {
 		}
 	}
 
-    public static void AllRunAway()
-    {
-        Transform foule = ULGlobals.followersGroup;
-        foreach (Transform child in foule)
-        {
-            child.GetComponent<ULFollowerController>().RunAway();
-        }
-    }
+	public static void AllRunAway () {
+		Transform foule = ULGlobals.followersGroup;
+		foreach (Transform child in foule) {
+			child.GetComponent<ULFollowerController> ().RunAway ();
+		}
+		Destroy (foule.gameObject);
+	}
 }

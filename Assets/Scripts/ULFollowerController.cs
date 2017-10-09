@@ -53,6 +53,7 @@ public class ULFollowerController : ULCharacter {
 			state = FollowerState.Gai;
 			followedGroup = ULGlobals.followersGroup;
 			Debug.Log ("Hugged " + transform);
+			gameObject.layer = 11; // Hittable
 			if (gaiCount == 0)
 				followedGroup.position = transform.position;
 			localOrigin = Vector3.zero;
@@ -64,7 +65,7 @@ public class ULFollowerController : ULCharacter {
 		}
 		else if (state == FollowerState.Handcuffed) {
 			StopCoroutine ("HandcuffCountDown");
-			gameObject.layer = 8; // Huggable
+			gameObject.layer = 11; // Hittable
 			state = FollowerState.Gai;
 			gameObject.tag = "Untagged";
 			transform.parent = followedGroup;

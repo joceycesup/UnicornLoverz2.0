@@ -51,6 +51,8 @@ public class ULGlobals : MonoBehaviour {
 	public static float emptyHugDuration { get { return instance._emptyHugDuration; } }
 	public float _endDelay = 2.5f;
 	public static float endDelay { get { return instance._endDelay; } }
+	public float _backToMenuDelay = 2.5f;
+	public static float backToMenuDelay { get { return instance._backToMenuDelay; } }
 
 	public Vector2 _randomConvertSound = new Vector2 (5.0f, 20.0f);
 	public static Vector2 randomConvertSound { get { return instance._randomConvertSound; } }

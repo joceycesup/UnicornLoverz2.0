@@ -65,7 +65,7 @@ public class ULMilitia : ULCharacter {
 
 	public void ChooseTarget () {
 		Transform overlapOrigin = ULGlobals.player.transform;
-		Collider2D[] results = Physics2D.OverlapCircleAll (overlapOrigin.position, ULGlobals.militiaChooseRadius, 256); // Huggable (1 << 8)
+		Collider2D[] results = Physics2D.OverlapCircleAll (overlapOrigin.position, ULGlobals.militiaChooseRadius, 2048); // Hittable (1 << 11)
 		foreach (Collider2D c in results) {
 			if (TakeAsTarget (c.GetComponent<ULFollowerController> ()))
 				break;

@@ -17,9 +17,10 @@ public class ULFenceBearer : MonoBehaviour {
 
 	void Update () {/*
 		if (ULFollowerController.gaiCount >= fence.minCrowd) {
+			// Lauch anim
 		}
 		else {
-
+			// Stop anim
 		}//*/
 	}
 

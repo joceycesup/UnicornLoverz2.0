@@ -30,6 +30,8 @@ public abstract class ULCharacter : MonoBehaviour {
 	}
 
 	private void Update () {
+		if (ULGameStateHandler.state == ULGameStateHandler.GameState.Pause)
+			return;
 		CharUpdate ();
 	}
 
@@ -49,6 +51,8 @@ public abstract class ULCharacter : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
+		if (ULGameStateHandler.state == ULGameStateHandler.GameState.Pause)
+			return;
 		CharFixedUpdate ();
 	}
 
