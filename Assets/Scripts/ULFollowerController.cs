@@ -21,6 +21,10 @@ public class ULFollowerController : ULCharacter {
 
 	public FollowerState state = FollowerState.Normal;
 
+	public static void ResetCount() {
+		gaiCount = 0;
+	}
+
 	protected override void Init () {
 		base.Init ();
 		localOrigin = transform.localPosition;

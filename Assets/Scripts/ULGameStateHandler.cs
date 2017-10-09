@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class ULGameStateHandler : MonoBehaviour {
 	private static ULGameStateHandler instance = null;
+
+	private static GameObject loseScreen { get { return ULGlobals.UIList[0]; } }
+	private static GameObject winScreen { get { return ULGlobals.UIList[1]; } }
+	private static GameObject pausePanel { get { return ULGlobals.UIList[2]; } }
+
 	public enum GameState {
 		None,
 		Menu,
@@ -33,6 +38,8 @@ public class ULGameStateHandler : MonoBehaviour {
 				Cursor.visible = true;
 				if (state == GameState.End)
 					AkSoundEngine.PostEvent ("StartGameMusic", ULGlobalSoundManager.instance);
+				if (state == GameState.Pause)
+					AkSoundEngine.PostEvent ("Unpause", ULGlobalSoundManager.instance);
 				AkSoundEngine.SetState ("States_Zone", "Zone01");
 				break;
 			case GameState.Credits:
@@ -57,8 +64,8 @@ public class ULGameStateHandler : MonoBehaviour {
 
 	private void SetPause (bool show) {
 		Cursor.visible = show;
-		ULGlobals.UIList[2].gameObject.SetActive (show);
-		Time.timeScale = show?0.0f:1.0f;
+		pausePanel.gameObject.SetActive (show);
+		Time.timeScale = show ? 0.0f : 1.0f;
 	}
 
 	private void Awake () {
@@ -97,6 +104,7 @@ public class ULGameStateHandler : MonoBehaviour {
 	public static void Reload () {
 		AkSoundEngine.PostEvent ("YouLoose", ULGlobalSoundManager.instance);
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+		ULFollowerController.ResetCount ();
 		Debug.LogWarning ("Reload");
 		SetState (GameState.Game);
 	}
@@ -117,26 +125,27 @@ public class ULGameStateHandler : MonoBehaviour {
 	}
 
 	private void ResetUI () {
-		ULGlobals.UIList[0].transform.parent.gameObject.SetActive (false);
-		ULGlobals.UIList[0].gameObject.SetActive (false);
-		ULGlobals.UIList[1].transform.parent.gameObject.SetActive (false);
-		ULGlobals.UIList[1].gameObject.SetActive (false);
+		loseScreen.transform.parent.gameObject.SetActive (false);
+		loseScreen.SetActive (false);
+		winScreen.transform.parent.gameObject.SetActive (false);
+		winScreen.gameObject.SetActive (false);
+		ULCanvasController.Init ();
 		SetPause (false);
 	}
 
 	private static void Victory () {
 		SetState (GameState.End);
 		AkSoundEngine.PostEvent ("YouWin", ULGlobalSoundManager.instance);
-		ULGlobals.UIList[1].transform.parent.gameObject.SetActive (true);
-		ULGlobals.UIList[1].gameObject.SetActive (true);
+		winScreen.transform.parent.gameObject.SetActive (true);
+		winScreen.gameObject.SetActive (true);
 		Debug.LogWarning ("Victory");
 	}
 
 	private static void Failed () {
 		SetState (GameState.End);
 		AkSoundEngine.PostEvent ("YouLoose", ULGlobalSoundManager.instance);
-		ULGlobals.UIList[0].transform.parent.gameObject.SetActive (true);
-		ULGlobals.UIList[0].gameObject.SetActive (true);
+		loseScreen.transform.parent.gameObject.SetActive (true);
+		loseScreen.gameObject.SetActive (true);
 		Debug.LogWarning ("Failed");
 	}
 }

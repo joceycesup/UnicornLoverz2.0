@@ -66,7 +66,7 @@ public class ULGlobals : MonoBehaviour {
 			DontDestroyOnLoad (gameObject);
 		}
 		else
-			Destroy (this);
+			Destroy (gameObject);
 	}
 
 	public static void Init () {

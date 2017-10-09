@@ -4,14 +4,20 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ULCanvasController : MonoBehaviour {
-	private static GameObject buttonHug;
-	private static GameObject buttonHit;
+	private static GameObject buttonHug { get { return ULGlobals.UIList[3]; } }
+	private static GameObject buttonHit { get { return ULGlobals.UIList[4]; } }
+	private static GameObject hugCollider { get { return ULGlobals.UIList[5]; } }
+	private static GameObject hitCollider { get { return ULGlobals.UIList[6]; } }
 
-	void Start () {
-		buttonHug = GameObject.Find ("HugButton");
-		buttonHit = GameObject.Find ("HitButton");
+	private void Start () {
+		Init ();
+	}
+
+	public static void Init () {
 		buttonHug.SetActive (false);
 		buttonHit.SetActive (false);
+		hugCollider.GetComponent<ULTutoTriggerCollider> ().Init ();
+		hitCollider.GetComponent<ULTutoTriggerCollider> ().Init ();
 	}
 
 	void Update () {
