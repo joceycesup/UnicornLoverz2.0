@@ -60,12 +60,18 @@ public class ULGlobals : MonoBehaviour {
 	private void Awake () {
 		if (instance == null) {
 			instance = this;
-			player = FindObjectOfType<ULPlayerController> ();
-			followersGroup = FindObjectOfType<ULCrowdControl> ().transform;
-			followersGroup.position = player.transform.position;
+			Init ();
 			DontDestroyOnLoad (gameObject);
 		}
 		else
 			Destroy (this);
+	}
+
+	public static void Init () {
+		player = FindObjectOfType<ULPlayerController> ();
+		if (player == null)
+			return;
+		followersGroup = FindObjectOfType<ULCrowdControl> ().transform;
+		followersGroup.position = player.transform.position;
 	}
 }

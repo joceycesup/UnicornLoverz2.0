@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class ULRetour : MonoBehaviour {
 
-	public void Retour()
-    {
-        SceneManager.LoadScene("START SCREEN");
-    }
+	public void Retour () {
+		SceneManager.LoadScene ("START SCREEN");
+		ULGameStateHandler.SetState (ULGameStateHandler.GameState.Menu);
+	}
 }

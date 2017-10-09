@@ -23,6 +23,8 @@ public class ULSpritesSorter : MonoBehaviour {
 
 	void Resort () {
 		float y = coll.bounds.center.y;
-		sr.sortingOrder = -(int) ((y / ULGlobals.mapHalfHeight) * 8192.0f);
+		float factor = (y + ULGlobals.mapHalfHeight) / (ULGlobals.mapHalfHeight * 2.0f);
+		transform.position = new Vector3 (transform.position.x, transform.position.y, -factor);
+		sr.sortingOrder = -(int) (factor * 8192.0f);
 	}
 }

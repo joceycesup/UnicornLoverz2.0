@@ -12,7 +12,6 @@ public class ULGlobalSoundManager : MonoBehaviour {
 			instance = gameObject;
 			DontDestroyOnLoad (gameObject);
 		}
-		else
-			Destroy (gameObject);
+		//else Destroy (gameObject);
 	}
 }
