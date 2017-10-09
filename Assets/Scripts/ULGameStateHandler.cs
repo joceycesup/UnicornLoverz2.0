@@ -29,6 +29,7 @@ public class ULGameStateHandler : MonoBehaviour {
 			case GameState.None:
 				break;
 			case GameState.Menu:
+				ResetUI ();
 				Cursor.visible = true;
 				if (state == GameState.End)
 					AkSoundEngine.PostEvent ("StartGameMusic", ULGlobalSoundManager.instance);
@@ -38,7 +39,7 @@ public class ULGameStateHandler : MonoBehaviour {
 				Cursor.visible = true;
 				break;
 			case GameState.Game:
-				SetPause (false);
+				ResetUI ();
 				if (state != GameState.Pause) {
 					ULGlobals.Init ();
 					AkSoundEngine.SetState ("States_Zone", "Zone01");
@@ -113,6 +114,14 @@ public class ULGameStateHandler : MonoBehaviour {
 		yield return new WaitForSeconds (ULGlobals.backToMenuDelay);
 		SetState (GameState.Menu);
 		SceneManager.LoadScene ("START SCREEN");
+	}
+
+	private void ResetUI () {
+		ULGlobals.UIList[0].transform.parent.gameObject.SetActive (false);
+		ULGlobals.UIList[0].gameObject.SetActive (false);
+		ULGlobals.UIList[1].transform.parent.gameObject.SetActive (false);
+		ULGlobals.UIList[1].gameObject.SetActive (false);
+		SetPause (false);
 	}
 
 	private static void Victory () {
