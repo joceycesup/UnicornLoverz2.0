@@ -49,4 +49,13 @@ public class ULCrowdControl : MonoBehaviour {
 			StartCoroutine ("CheckPlayerPosition");
 		}
 	}
+
+    public static void AllRunAway()
+    {
+        Transform foule = ULGlobals.followersGroup;
+        foreach (Transform child in foule)
+        {
+            child.GetComponent<ULFollowerController>().RunAway();
+        }
+    }
 }

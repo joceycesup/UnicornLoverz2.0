@@ -12,6 +12,7 @@ public class ULTutoTriggerCollider : MonoBehaviour {
 			else {
 				ULCanvasController.ActiveButtonHit ();
 				AkSoundEngine.PostEvent ("TrumpLol", ULGlobalSoundManager.instance);
+                ULCrowdControl.AllRunAway();
 			}
 			Destroy (this);
 		}
